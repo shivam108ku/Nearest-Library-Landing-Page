@@ -8,6 +8,7 @@ export default function Navbar() {
     { label: "How It Works", href: "#how-it-works" },
     { label: "Testimonials", href: "#testimonials" },
     { label: "For Libraries", href: "#for-libraries" },
+    { label: "FAQ", href: "#faq" },
   ];
 
   return (
