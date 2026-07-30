@@ -1,26 +1,297 @@
 @import "tailwindcss";
 
+/* ── Design System Tokens ─────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy: #0F172A;
+  --navy-light: #1E293B;
+  --navy-soft: #334155;
+  --gold: #B8860B;
+  --gold-light: #D4A017;
+  --gold-glow: #E5B844;
+  --cream: #FDF8EF;
+  --cream-light: #FFFDF7;
+  --warm-white: #FEFCF8;
+  --surface: #FFFFFF;
+  --bg: #F8FAFC;
+  --border: #E8ECF4;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --emerald: #10B981;
+  --emerald-light: #D1FAE5;
+  --sky: #0EA5E9;
+  --sky-light: #E0F2FE;
+  --violet: #8B5CF6;
+  --violet-light: #EDE9FE;
+  --rose: #F43F5E;
+  --rose-light: #FFF1F2;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg);
+  --color-foreground: var(--text-primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Global Reset & Base ──────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream-light);
+  color: var(--text-primary);
+  font-family: var(--font-sans, "Inter", system-ui, -apple-system, sans-serif);
+  overflow-x: hidden;
+}
+
+/* ── Selection ─────────────────────────────────────────── */
+::selection {
+  background: rgba(184, 134, 11, 0.2);
+  color: var(--navy);
+}
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.15);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(15, 23, 42, 0.3); }
+
+/* ── Animated Gradient Background ─────────────────────── */
+.gradient-bg {
+  background: linear-gradient(
+    135deg,
+    var(--cream-light) 0%,
+    #FFF8E7 25%,
+    #F0F4FF 50%,
+    var(--cream) 75%,
+    var(--cream-light) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 0%; }
+  75% { background-position: 0% 100%; }
+}
+
+/* ── Floating Animation ───────────────────────────────── */
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+.float-delayed {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: -3s;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ── Pulse Glow ───────────────────────────────────────── */
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(184, 134, 11, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(184, 134, 11, 0.3), 0 0 60px rgba(184, 134, 11, 0.1); }
+}
+
+/* ── Slide In Animation ───────────────────────────────── */
+.slide-up {
+  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+@keyframes slideUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up-delay-1 { animation-delay: 0.1s; }
+.slide-up-delay-2 { animation-delay: 0.2s; }
+.slide-up-delay-3 { animation-delay: 0.3s; }
+.slide-up-delay-4 { animation-delay: 0.4s; }
+.slide-up-delay-5 { animation-delay: 0.5s; }
+.slide-up-delay-6 { animation-delay: 0.6s; }
+
+/* ── Sparkle Dots ─────────────────────────────────────── */
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  animation: sparkle 2.5s ease-in-out infinite;
+}
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* ── Glass Card ───────────────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* ── Navy Card ────────────────────────────────────────── */
+.navy-glass {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Gold Shimmer Text ────────────────────────────────── */
+.shimmer-gold {
+  background: linear-gradient(
+    105deg,
+    var(--gold) 0%,
+    var(--gold-glow) 40%,
+    var(--gold) 60%,
+    var(--gold-light) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+/* ── Gradient Text ────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--navy) 0%, #4338CA 50%, var(--navy) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── CTA Button ───────────────────────────────────────── */
+.cta-button {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cta-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.cta-button:hover::before { opacity: 1; }
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(184, 134, 11, 0.35);
+}
+.cta-button span { position: relative; z-index: 1; }
+
+/* ── Secondary Button ─────────────────────────────────── */
+.secondary-button {
+  border: 2px solid var(--border);
+  color: var(--navy);
+  background: var(--surface);
+  transition: all 0.3s ease;
+}
+.secondary-button:hover {
+  border-color: var(--gold);
+  background: var(--cream);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Feature Card ─────────────────────────────────────── */
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  border-color: rgba(184, 134, 11, 0.3);
+}
+.feature-card:hover::before { opacity: 1; }
+
+/* ── Stat Card ────────────────────────────────────────── */
+.stat-card {
+  text-align: center;
+  padding: 32px 20px;
+  border-radius: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+.stat-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Testimonial Card ─────────────────────────────────── */
+.testimonial-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+}
+.testimonial-card::before {
+  content: "✦";
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 20px;
+  color: var(--gold-light);
+  opacity: 0.5;
+}
+
+/* ── Step Connector ───────────────────────────────────── */
+.step-line {
+  position: absolute;
+  left: 27px;
+  top: 56px;
+  width: 2px;
+  height: calc(100% - 56px);
+  background: linear-gradient(180deg, var(--gold-light), transparent);
+}
+
+/* ── Responsive Utilities ─────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-title { font-size: 2.2rem !important; }
 }
