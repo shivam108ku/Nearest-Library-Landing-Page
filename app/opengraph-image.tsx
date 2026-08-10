@@ -60,7 +60,7 @@ export default async function Image() {
           >
             N
           </div>
-          <span style={{ fontSize: '28px', fontWeight: 800, tracking: '-0.5px' }}>
+          <span style={{ fontSize: '28px', fontWeight: 800, letterSpacing: '-0.5px' }}>
             Nearest<span style={{ color: '#D4A017' }}>Library</span>
           </span>
         </div>
