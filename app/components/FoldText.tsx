@@ -115,10 +115,51 @@ const FoldText: React.FC<FoldTextProps> = ({
       });
     }
 
-    return Array.from(text).map((char, index) => {
-      if (char === '\n') return <br key={`br-${index}`} />;
-      const customColor = charColors?.[index] || (getCharColor ? getCharColor(char, index) : undefined);
-      return renderSegment(char === ' ' ? '\u00A0' : char, `segment-char-${index}`, 'char', customColor);
+    const lines = text.split('\n');
+    let globalIndex = 0;
+
+    return lines.map((line, lineIdx) => {
+      const words = line.split(/(\s+)/);
+      const lineElements = words.map((word, wordIdx) => {
+        if (!word) return null;
+        if (/^\s+$/.test(word)) {
+          const spaces = Array.from(word).map((spaceChar) => {
+            const idx = globalIndex++;
+            return (
+              <span key={`space-${idx}`} className="fold-text-whitespace">
+                {'\u00A0'}
+              </span>
+            );
+          });
+          return <React.Fragment key={`ws-${wordIdx}`}>{spaces}</React.Fragment>;
+        }
+
+        const chars = Array.from(word).map((char) => {
+          const idx = globalIndex++;
+          const customColor = charColors?.[idx] || (getCharColor ? getCharColor(char, idx) : undefined);
+          return renderSegment(char, `segment-char-${idx}`, 'char', customColor);
+        });
+
+        return (
+          <span
+            key={`word-${wordIdx}`}
+            style={{ display: 'inline-block', whiteSpace: 'nowrap' }}
+          >
+            {chars}
+          </span>
+        );
+      });
+
+      if (lineIdx < lines.length - 1) {
+        globalIndex++;
+      }
+
+      return (
+        <React.Fragment key={`line-${lineIdx}`}>
+          {lineElements}
+          {lineIdx < lines.length - 1 && <br key={`line-br-${lineIdx}`} />}
+        </React.Fragment>
+      );
     });
   }, [text, splitBy, hinge, hingeConfig.origin, safePerspective, charColors, getCharColor]);
 
