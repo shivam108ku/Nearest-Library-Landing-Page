@@ -264,7 +264,6 @@ const FoldText: React.FC<FoldTextProps> = ({
       : {}),
     ...(fontWeight ? { ['--fold-text-font-weight' as any]: fontWeight } : {}),
     ...(color ? { ['--fold-text-color' as any]: color } : {}),
-    fontFamily: 'var(--font-bricolage), "Bricolage Grotesque", var(--font-sans), sans-serif',
     ...style
   };
 

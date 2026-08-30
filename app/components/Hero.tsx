@@ -1,9 +1,16 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import FoldText from "./FoldText";
 import SideRays from "./SideRays";
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <section className="relative w-full h-screen min-h-[100dvh] flex flex-col items-center justify-center text-center overflow-hidden bg-white px-4">
       {/* ── WebGL SideRays Background (Full Screen) ── */}
@@ -23,27 +30,34 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* 3D Origami FoldText Headline matching exact letter count */}
+        {/* 3D Origami FoldText Headline with SEO-friendly SSR Fallback */}
         <div className="w-full max-w-xl mx-auto mb-8 flex justify-center text-center">
-          <FoldText
-            text={"Nearest Library\nfor your future"}
-            splitBy="char"
-            hinge="top"
-            trigger="mount"
-            duration={0.65}
-            stagger={0.045}
-            ease="power3.out"
-            perspective={700}
-            creaseShading={0.55}
-            fontSize="clamp(1.9rem, 6.5vw, 3rem)"
-            fontWeight={600}
-            color="#09090b"
-            charColors={{ 8: "#B8860B", 9: "#B8860B", 10: "#B8860B" }}
-            style={{
-              textAlign: "center",
-              lineHeight: 1.15,
-            }}
-          />
+          {mounted ? (
+            <FoldText
+              text={"Nearest Library\nfor your future"}
+              splitBy="char"
+              hinge="top"
+              trigger="mount"
+              duration={0.65}
+              stagger={0.045}
+              ease="power3.out"
+              perspective={700}
+              creaseShading={0.55}
+              fontSize="clamp(1.9rem, 6.5vw, 3rem)"
+              fontWeight={600}
+              color="#09090b"
+              charColors={{ 8: "#B8860B", 9: "#B8860B", 10: "#B8860B" }}
+            />
+          ) : (
+            <h1
+              className="text-3xl sm:text-4xl md:text-5xl font-semibold text-neutral-900 tracking-tight leading-tight"
+              style={{ fontSize: "clamp(1.9rem, 6.5vw, 3rem)" }}
+            >
+              Nearest <span className="text-[#B8860B]">Lib</span>rary
+              <br />
+              for your future
+            </h1>
+          )}
         </div>
 
         {/* Action Buttons matching screenshot */}
