@@ -33,8 +33,8 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-24 px-6 bg-gradient-to-b from-white via-[#F8FAFC] to-white">
-      <div className="max-w-4xl mx-auto">
+    <section id="faq" className="py-24 px-6 bg-gradient-to-b from-white via-[#F8FAFC] to-white" suppressHydrationWarning>
+      <div className="max-w-4xl mx-auto" suppressHydrationWarning>
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur-md border border-neutral-200/80 rounded-full pl-1.5 pr-4 py-1 text-sm shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-6">
