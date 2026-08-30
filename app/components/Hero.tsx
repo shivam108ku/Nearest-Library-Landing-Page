@@ -26,7 +26,7 @@ export default function Hero() {
         {/* 3D Origami FoldText Headline matching exact letter count */}
         <div className="w-full max-w-xl mx-auto mb-8 flex justify-center text-center">
           <FoldText
-            text={"Nearest Library for your\nfuture"}
+            text={"Nearest Library\nfor your future"}
             splitBy="char"
             hinge="top"
             trigger="mount"
@@ -35,7 +35,7 @@ export default function Hero() {
             ease="power3.out"
             perspective={700}
             creaseShading={0.55}
-            fontSize="clamp(2.1rem, 7vw, 3rem)"
+            fontSize="clamp(1.9rem, 6.5vw, 3rem)"
             fontWeight={600}
             color="#09090b"
             charColors={{ 8: "#B8860B", 9: "#B8860B", 10: "#B8860B" }}
