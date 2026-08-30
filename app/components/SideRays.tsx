@@ -92,8 +92,9 @@ const SideRays: React.FC<SideRaysProps> = ({
 
       if (!containerRef.current) return;
 
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
       const renderer = new Renderer({
-        dpr: Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 2),
+        dpr: isMobile ? 1 : Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 2),
         alpha: true
       });
       rendererRef.current = renderer;

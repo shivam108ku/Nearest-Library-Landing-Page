@@ -46,6 +46,9 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  touch-action: pan-y;
+  overflow-x: clip;
 }
 html.lenis, html.lenis-smooth {
   scroll-behavior: auto !important;
@@ -55,7 +58,9 @@ body {
   background: #FFFFFF;
   color: #09090b;
   font-family: var(--font-bricolage), var(--font-sans), "Inter", system-ui, -apple-system, sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 h1, h2, h3, h4, h5, h6 {

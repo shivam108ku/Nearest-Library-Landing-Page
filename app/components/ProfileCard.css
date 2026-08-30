@@ -34,7 +34,7 @@
   perspective: 500px;
   transform: translate3d(0, 0, 0.1px);
   position: relative;
-  touch-action: none;
+  touch-action: pan-y;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,6 +80,14 @@
 .pc-card:hover,
 .pc-card.active {
   transform: translateZ(0) rotateX(0deg) rotateY(0deg);
+}
+
+@media (max-width: 640px) {
+  .pc-card {
+    max-height: 470px;
+    width: 100%;
+    max-width: 310px;
+  }
 }
 
 .pc-card-shell.entering .pc-card {

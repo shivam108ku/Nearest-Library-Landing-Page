@@ -190,7 +190,7 @@ export default function PartnerLibrariesClient({ libraries }: { libraries: Libra
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by name, city, AC..."
-            className="w-full pl-9 pr-8 py-2 text-xs sm:text-sm bg-white border border-neutral-200 rounded-full focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 transition-all text-neutral-900 placeholder:text-neutral-400 shadow-2xs"
+            className="w-full pl-9 pr-8 py-2.5 text-base sm:text-sm bg-white border border-neutral-200 rounded-full focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 transition-all text-neutral-900 placeholder:text-neutral-400 shadow-2xs"
           />
           {searchQuery && (
             <button

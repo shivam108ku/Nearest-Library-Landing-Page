@@ -59,15 +59,14 @@ function subscribeToWindowScroll(cb: () => void): () => void {
 
   if (!globalLenis) {
     globalLenis = new Lenis({
-      duration: 1.2,
+      duration: 1.0,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 2,
+      syncTouch: false, // 100% native 60fps/120fps touch momentum scroll on phones
+      touchMultiplier: 1,
       infinite: false,
       wheelMultiplier: 1,
       lerp: 0.1,
-      syncTouch: true,
-      syncTouchLerp: 0.075,
     });
 
     globalLenis.on('scroll', () => {

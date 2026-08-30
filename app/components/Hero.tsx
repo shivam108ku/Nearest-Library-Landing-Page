@@ -35,7 +35,7 @@ export default function Hero() {
             ease="power3.out"
             perspective={700}
             creaseShading={0.55}
-            fontSize={48}
+            fontSize="clamp(2.1rem, 7vw, 3rem)"
             fontWeight={600}
             color="#09090b"
             charColors={{ 8: "#B8860B", 9: "#B8860B", 10: "#B8860B" }}
