@@ -4,24 +4,28 @@ import FoldText from "./FoldText";
 
 const faqs = [
   {
-    q: "How do I book a seat in a nearby library using NearestLibrary?",
-    a: "Download the NearestLibrary app or browse online, choose your preferred library in your city, select your seat and shift (Morning, Afternoon, Evening, or Full Day), and tap to confirm your booking in seconds.",
+    q: "How do I find the nearest library near me using NearestLibrary?",
+    a: "Download the NearestLibrary app from Google Play Store, open it, and it will automatically detect your location to show the nearest library near you. You can browse available study seats, check real-time occupancy, and book your seat in seconds — completely free for students!",
   },
   {
-    q: "How can library owners list their study space on NearestLibrary?",
-    a: "Library owners can register for free by clicking 'Register Your Library', entering basic space details, configuring floor seat maps, and gaining instant access to the digital management dashboard.",
+    q: "Is NearestLibrary really free for students looking for a library near me?",
+    a: "Yes! The NearestLibrary app is 100% free for students. You can search for libraries near you, check seat availability, book study seats, track your attendance, and manage your study streaks — all without paying anything.",
   },
   {
-    q: "Is NearestLibrary free for students?",
-    a: "Yes! The NearestLibrary mobile app is 100% free for students to download, search nearby libraries, check real-time seat availability, and view study logs.",
+    q: "How do I book a study seat at a library near me?",
+    a: "Open the NearestLibrary app, search for 'library near me', pick your preferred library, select a shift (Morning, Afternoon, Evening, or Full Day), choose an available seat from the interactive seat map, and confirm your booking. It takes less than 30 seconds!",
   },
   {
-    q: "How does QR code attendance work?",
-    a: "Every registered library gets a unique QR code poster. Students scan the QR code upon entry and exit to automatically log their check-in and check-out times without manual registers.",
+    q: "How does QR code attendance tracking work at the library?",
+    a: "Every NearestLibrary partner library has a unique QR code displayed at the entrance. Students scan the QR code when entering and leaving. Their attendance is automatically logged in the app with exact timestamps — no manual registers needed.",
   },
   {
-    q: "Can I manage multiple library branches or floors?",
-    a: "Absolutely! The library owner dashboard supports multi-floor layouts, shift pricing customization, real-time occupancy monitoring, and automated payment tracking across all your branches.",
+    q: "Can library owners list their study space on NearestLibrary?",
+    a: "Yes! Library owners can register their library for free on the NearestLibrary platform. After registration, you get access to a full digital dashboard for seat management, billing, attendance tracking, student management, and real-time occupancy monitoring.",
+  },
+  {
+    q: "What cities have libraries listed on NearestLibrary?",
+    a: "NearestLibrary currently has 500+ partner libraries across major Indian cities including Delhi, Mumbai, Bangalore, Hyderabad, Pune, Jaipur, Lucknow, Patna, Bhopal, Chandigarh, Ahmedabad, Kolkata, and many more. New libraries are added daily!",
   },
 ];
 

@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
-export const alt = 'NearestLibrary — Your Study Space, One Tap Away';
+export const alt = 'Library Near Me — Find Nearest Library & Book Study Seats | NearestLibrary App';
 export const size = {
   width: 1200,
   height: 630,
@@ -76,7 +76,7 @@ export default async function Image() {
               letterSpacing: '-1.5px',
             }}
           >
-            Your Perfect <span style={{ color: '#D4A017' }}>Study Spot</span> is Just a Tap Away ✨
+            Find <span style={{ color: '#D4A017' }}>Library Near Me</span> & Book Study Seats Instantly ✨
           </h1>
           <p
             style={{
@@ -86,7 +86,7 @@ export default async function Image() {
               lineHeight: 1.4,
             }}
           >
-            Find nearby co-working libraries, reserve your seat in real-time, and manage attendance seamlessly.
+            Discover the nearest library near you, reserve study seats online, and track attendance with QR scan. India's #1 library seat booking app — free for students!
           </p>
         </div>
 

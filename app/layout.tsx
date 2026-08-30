@@ -27,26 +27,59 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "NearestLibrary — Smart Library Seat Booking & Study Space Management",
-    template: "%s | NearestLibrary",
+    default:
+      "Library Near Me — Find & Book Study Seats Instantly | NearestLibrary",
+    template: "%s | NearestLibrary — Library Near Me",
   },
   description:
-    "Discover nearby libraries, book study seats instantly, and manage attendance with QR check-in. The #1 library management and seat reservation app for students and library owners across India.",
+    "Find the nearest library near you, book study seats online in seconds, and manage attendance with QR check-in. India's #1 library near me app — discover study spaces, reading rooms & co-working libraries near your location. Free for students!",
   keywords: [
+    // ─── Primary High-Volume Keywords ───
+    "library near me",
     "nearest library",
-    "library seat booking",
+    "library near me open now",
+    "study library near me",
+    "reading library near me",
+    "public library near me",
+    // ─── Intent-Based Keywords ───
+    "find library near me",
     "book library seat online",
+    "library seat booking app",
     "study space near me",
-    "co-working library",
-    "student study hall",
+    "study room near me",
+    "study hall near me",
+    "reading room near me",
+    "co-working library near me",
+    // ─── Long-Tail Transactional Keywords ───
+    "book study seat near me",
+    "reserve library seat online",
+    "library seat reservation app India",
+    "online library booking system",
+    "study table booking app",
     "library management system",
-    "QR library attendance",
+    "library management app",
+    // ─── Hindi / Hinglish / Regional Intent ───
+    "nearest library kahan hai",
+    "paas mein library",
+    "library pass me",
+    "padhai ki jagah near me",
+    // ─── Student & Location Intent ───
+    "best library for students near me",
+    "cheapest library near me",
+    "24 hour library near me",
+    "AC library near me",
+    "library with wifi near me",
+    "silent study zone near me",
+    // ─── Library Owner Keywords ───
     "library owner dashboard",
-    "study seat app India",
+    "QR attendance system for library",
+    "digital library management India",
+    "how to list library online",
+    "library billing software",
   ],
-  authors: [{ name: "NearestLibrary Team", url: siteUrl }],
-  creator: "NearestLibrary",
-  publisher: "NearestLibrary Technologies",
+  authors: [{ name: "Shivam Kumar", url: siteUrl }],
+  creator: "Shivam Kumar",
+  publisher: "NearestLibrary",
   formatDetection: {
     email: false,
     address: false,
@@ -69,9 +102,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "NearestLibrary — Your Perfect Study Spot, One Tap Away ✨",
+    title:
+      "Library Near Me — Find Nearest Library & Book Study Seats Instantly ✨",
     description:
-      "Find nearby study halls, reserve seats in real-time, and manage library attendance effortlessly.",
+      "Discover nearest libraries near you, reserve study seats in real-time, and manage attendance effortlessly. India's #1 library near me app for students.",
     url: siteUrl,
     siteName: "NearestLibrary",
     locale: "en_IN",
@@ -81,26 +115,27 @@ export const metadata: Metadata = {
         url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "NearestLibrary — Smart Library Seat Booking & Study Space App",
+        alt: "NearestLibrary — Find Library Near Me & Book Study Seats Online",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NearestLibrary — Smart Library Seat Booking App",
+    title: "Library Near Me — Find & Book Study Seats Instantly",
     description:
-      "Find nearby libraries, reserve your seat in seconds, and track attendance via QR scan.",
+      "Find nearest libraries, reserve your study seat in seconds, and track attendance via QR scan. Free for students!",
     creator: "@nearestlibrary",
     images: [`${siteUrl}/opengraph-image`],
   },
   icons: {
-    icon: [
-      { url: "/icon.svg?v=2", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/icon.svg?v=2", type: "image/svg+xml" }],
     shortcut: "/icon.svg?v=2",
     apple: "/icon.svg?v=2",
   },
   category: "Education",
+  other: {
+    "google-site-verification": "ADD_YOUR_GOOGLE_VERIFICATION_CODE_HERE",
+  },
 };
 
 export default function RootLayout({
@@ -109,10 +144,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${bricolage.variable} h-full antialiased`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.variable} ${bricolage.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
       <head>
         <link rel="icon" type="image/svg+xml" href="/icon.svg?v=2" />
         <link rel="shortcut icon" type="image/svg+xml" href="/icon.svg?v=2" />
+        <link rel="canonical" href={siteUrl} />
+        <meta name="geo.region" content="IN" />
+        <meta name="geo.placename" content="India" />
+        <meta name="ICBM" content="20.5937, 78.9629" />
+        <meta name="language" content="English" />
+        <meta name="revisit-after" content="3 days" />
+        <meta name="distribution" content="global" />
+        <meta name="rating" content="general" />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <StructuredData />

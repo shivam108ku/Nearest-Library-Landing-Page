@@ -2,43 +2,56 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://nearestlibrary.com';
+  const now = new Date();
 
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'daily',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/#features`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/#how-it-works`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/#partner-libraries`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/#for-libraries`,
-      lastModified: new Date(),
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/#faq`,
+      lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/#download`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/#about`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.6,
     },
   ];
 }

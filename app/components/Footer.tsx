@@ -29,7 +29,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm text-neutral-400 leading-relaxed max-w-xs mb-6">
-              India&apos;s smartest library seat booking platform. Helping students find their perfect study spot, every single day.
+              India&apos;s #1 library near me app. Find the nearest library near you, book study seats online, and manage attendance with QR check-in. Helping 10,000+ students find their perfect study space daily.
             </p>
             <div className="flex gap-3">
               {["X", "In", "Ig", "Yt"].map((s) => (
