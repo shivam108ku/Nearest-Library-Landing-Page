@@ -7,6 +7,7 @@ export default function CTA() {
           <div className="absolute top-[-80px] right-[-80px] w-[250px] h-[250px] rounded-full bg-[#B8860B]/10 blur-3xl" />
           <div className="absolute bottom-[-60px] left-[-60px] w-[200px] h-[200px] rounded-full bg-[#4338CA]/10 blur-3xl" />
 
+
           <div className="relative z-10">
             <span className="text-5xl mb-5 block">🎓</span>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">
