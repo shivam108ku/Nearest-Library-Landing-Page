@@ -30,6 +30,7 @@ const renderWhitespace = (value: string, key: string) =>
   });
 
 export interface FoldTextProps {
+  as?: 'h1' | 'h2' | 'h3' | 'span' | 'p' | 'div';
   text?: string;
   splitBy?: 'char' | 'word' | 'line';
   hinge?: 'top' | 'bottom' | 'left' | 'right';
@@ -49,6 +50,7 @@ export interface FoldTextProps {
 }
 
 const FoldText: React.FC<FoldTextProps> = ({
+  as = 'span',
   text = 'Design unfolds',
   splitBy = 'char',
   hinge = 'top',
@@ -66,7 +68,7 @@ const FoldText: React.FC<FoldTextProps> = ({
   className = '',
   style = {}
 }) => {
-  const rootRef = useRef<HTMLSpanElement | null>(null);
+  const rootRef = useRef<any>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
   const hingeConfig = HINGE_CONFIG[hinge] || HINGE_CONFIG.top;
@@ -267,13 +269,15 @@ const FoldText: React.FC<FoldTextProps> = ({
     ...style
   };
 
+  const Component = as as any;
+
   return (
-    <span ref={rootRef} className={`fold-text ${className}`.trim()} style={rootStyle} suppressHydrationWarning>
+    <Component ref={rootRef} className={`fold-text ${className}`.trim()} style={rootStyle} suppressHydrationWarning>
       <span className="fold-text-sr-only" suppressHydrationWarning>{text}</span>
       <span className="fold-text-visual" aria-hidden="true" suppressHydrationWarning>
         {segments}
       </span>
-    </span>
+    </Component>
   );
 };
 

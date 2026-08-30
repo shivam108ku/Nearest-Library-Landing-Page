@@ -7,11 +7,17 @@ const FoldText = dynamic(() => import("./FoldText"), {
   ssr: false,
   loading: () => (
     <h1
-      className="text-3xl sm:text-4xl md:text-5xl font-semibold text-neutral-900 tracking-tight leading-tight"
-      style={{ fontSize: "clamp(1.9rem, 6.5vw, 3rem)" }}
+      className="fold-text"
+      style={{
+        fontSize: "clamp(1.9rem, 6.5vw, 3rem)",
+        fontWeight: 600,
+        color: "#09090b",
+        lineHeight: 1.15,
+        letterSpacing: "-0.02em",
+      }}
       suppressHydrationWarning
     >
-      Nearest <span className="text-[#B8860B]">Lib</span>rary
+      Nearest <span style={{ color: "#B8860B" }}>Lib</span>rary
       <br />
       for your future
     </h1>
@@ -34,13 +40,6 @@ export default function Hero() {
         className="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center"
         suppressHydrationWarning
       >
-        {/* Desktop-only descriptive label */}
-        <p
-          className="hidden md:block text-[15px] font-semibold text-neutral-900 tracking-tight mb-5"
-          suppressHydrationWarning
-        >
-          Light cascading from the corner
-        </p>
 
         {/* Top Pill Badge: Relevant to NearestLibrary */}
         <div
@@ -61,13 +60,14 @@ export default function Hero() {
           suppressHydrationWarning
         >
           <FoldText
-            text={"Nearest Library\nfor your future"}
+            as="h1"
+            text={"Nearest Library Making\n Libraries Smarter"}
             splitBy="char"
             hinge="top"
             trigger="mount"
             duration={0.65}
             stagger={0.045}
-            ease="power3.out"
+            ease="power3.out" 
             perspective={700}
             creaseShading={0.55}
             fontSize="clamp(1.9rem, 6.5vw, 3rem)"
