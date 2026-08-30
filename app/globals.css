@@ -291,7 +291,68 @@ body {
   background: linear-gradient(180deg, var(--gold-light), transparent);
 }
 
+/* ── Library Card ─────────────────────────────────────── */
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.library-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 236, 244, 0.8);
+  border-radius: 20px;
+  padding: 24px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  animation: cardFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.library-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--emerald));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.library-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(184, 134, 11, 0.12);
+  border-color: rgba(184, 134, 11, 0.25);
+}
+
+.library-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ── Responsive Utilities ─────────────────────────────── */
 @media (max-width: 768px) {
   .hero-title { font-size: 2.2rem !important; }
+  .library-grid {
+    grid-template-columns: 1fr;
+  }
 }
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .library-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+

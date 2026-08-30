@@ -4,6 +4,7 @@ import Features from "./components/Features";
 import AppShowcase from "./components/AppShowcase";
 import HowItWorks from "./components/HowItWorks";
 import Testimonials from "./components/Testimonials";
+import PartnerLibraries from "./components/PartnerLibraries";
 import ForLibraries from "./components/ForLibraries";
 import FAQ from "./components/FAQ";
 import CTA from "./components/CTA";
@@ -18,6 +19,7 @@ export default function Home() {
       <AppShowcase />
       <HowItWorks />
       <Testimonials />
+      <PartnerLibraries />
       <ForLibraries />
       <FAQ />
       <CTA />
