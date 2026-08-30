@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { type Library } from "@/lib/api";
 
 /* ── Minimal Black & White Facility Emojis ───────────────── */
@@ -93,6 +93,19 @@ export default function PartnerLibrariesClient({ libraries }: { libraries: Libra
       return matchesRegion && matchesSearch;
     });
   }, [libraries, selectedRegion, searchQuery]);
+
+  // Pagination: Show 8 initially, with "Show More" expansion
+  const INITIAL_VISIBLE_COUNT = 8;
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
+
+  // Reset pagination when user switches regions or searches
+  useEffect(() => {
+    setVisibleCount(INITIAL_VISIBLE_COUNT);
+  }, [selectedRegion, searchQuery]);
+
+  const displayedLibraries = useMemo(() => {
+    return filteredLibraries.slice(0, visibleCount);
+  }, [filteredLibraries, visibleCount]);
 
   // Aggregate stats
   const totalDesks = useMemo(() => {
@@ -192,7 +205,7 @@ export default function PartnerLibrariesClient({ libraries }: { libraries: Libra
 
       {/* ── Library Cards Grid ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
-        {filteredLibraries.map((lib) => {
+        {displayedLibraries.map((lib) => {
           return (
             <div
               key={lib.id}
@@ -283,6 +296,39 @@ export default function PartnerLibrariesClient({ libraries }: { libraries: Libra
           );
         })}
       </div>
+
+      {/* ── Show More / Show Less Controls ── */}
+      {filteredLibraries.length > INITIAL_VISIBLE_COUNT && (
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+          <p className="text-xs text-neutral-500 font-medium">
+            Showing <span className="font-semibold text-neutral-800">{Math.min(visibleCount, filteredLibraries.length)}</span> of <span className="font-semibold text-neutral-800">{filteredLibraries.length}</span> libraries
+          </p>
+          {visibleCount < filteredLibraries.length ? (
+            <button
+              onClick={() => setVisibleCount((prev) => prev + 8)}
+              className="inline-flex items-center gap-2 bg-white hover:bg-neutral-50 text-neutral-900 border border-neutral-300 font-semibold text-xs px-5 py-2.5 rounded-xl shadow-2xs hover:shadow-xs transition-all cursor-pointer hover:scale-[1.02]"
+            >
+              <span>Show More Libraries</span>
+              <span className="bg-neutral-100 text-neutral-700 text-[10px] px-2 py-0.5 rounded-full font-bold">
+                +{filteredLibraries.length - visibleCount}
+              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+          ) : (
+            <button
+              onClick={() => setVisibleCount(INITIAL_VISIBLE_COUNT)}
+              className="inline-flex items-center gap-2 bg-white hover:bg-neutral-50 text-neutral-600 border border-neutral-200 font-semibold text-xs px-4 py-2 rounded-xl transition-all cursor-pointer"
+            >
+              <span>Show Less</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 15l-6-6-6 6" />
+              </svg>
+            </button>
+          )}
+        </div>
+      )}
 
       {filteredLibraries.length === 0 && (
         <div className="text-center py-16 bg-white border border-neutral-200 rounded-2xl max-w-md mx-auto">

@@ -14,12 +14,8 @@ export default function Navbar() {
       >
         {/* Brand / Logo */}
         <a href="#" className="flex items-center gap-2.5 group cursor-pointer" aria-label="Nearest Library">
-          <div className="w-7 h-7 flex items-center justify-center text-neutral-900 group-hover:scale-105 transition-transform">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6">
-              <ellipse cx="12" cy="12" rx="4" ry="10" transform="rotate(45 12 12)" strokeLinecap="round" />
-              <ellipse cx="12" cy="12" rx="4" ry="10" transform="rotate(-45 12 12)" strokeLinecap="round" />
-              <circle cx="12" cy="12" r="1.5" fill="currentColor" />
-            </svg>
+          <div className="w-8 h-8 rounded-xl overflow-hidden shadow-2xs group-hover:scale-105 transition-transform flex-shrink-0">
+            <img src="/logo.png" alt="Nearest Library Logo" className="w-full h-full object-cover" />
           </div>
           <span className="text-[15px] font-bold tracking-tight text-neutral-900">
             Nearest <span className="text-[#B8860B]">Lib</span>rary
@@ -41,7 +37,9 @@ export default function Navbar() {
             About
           </a>
           <a
-            href="#download"
+            href="https://play.google.com/store/apps/details?id=com.shivam.nearestlibrary&pli=1"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-black text-white px-4 py-2 rounded-xl text-sm font-medium shadow-sm hover:bg-neutral-800 transition-colors cursor-pointer"
           >
             Download App
@@ -93,11 +91,13 @@ export default function Navbar() {
             About
           </a>
           <a
-            href="#download"
+            href="https://play.google.com/store/apps/details?id=com.shivam.nearestlibrary&pli=1"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setOpen(false)}
             className="bg-black text-white text-center py-2.5 rounded-xl text-sm font-medium shadow-sm hover:bg-neutral-800"
           >
-            Download App
+            Download App (Google Play)
           </a>
         </div>
       )}

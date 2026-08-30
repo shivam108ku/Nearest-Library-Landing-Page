@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Rounded Squircle Canvas -->
+  <rect width="512" height="512" rx="128" fill="#09090B"/>
+  
+  <!-- Subtle Inner Gold Border -->
+  <rect x="12" y="12" width="488" height="488" rx="116" stroke="#B8860B" stroke-width="12" stroke-opacity="0.4"/>
+  
+  <!-- Subtle Glow -->
+  <circle cx="256" cy="240" r="140" fill="#B8860B" fill-opacity="0.25"/>
+
+  <!-- Academic Mortarboard / Knowledge Beacon -->
+  <path d="M256 100L400 170L256 240L112 170L256 100Z" fill="url(#goldGrad)" filter="drop-shadow(0 8px 16px rgba(184, 134, 11, 0.4))"/>
+  
+  <!-- Tassel -->
+  <path d="M380 180V250" stroke="#FBBF24" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="380" cy="256" r="10" fill="#FBBF24"/>
+
+  <!-- Cap Skull Arch -->
+  <path d="M166 196V245C166 245 204 275 256 275C308 275 346 245 346 196" fill="none" stroke="#D4A017" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Open Library Book -->
+  <path d="M130 305C175 295 225 310 256 330C287 310 337 295 382 305V395C337 385 287 400 256 420C225 400 175 385 130 395V305Z" fill="#FFFFFF" filter="drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5))"/>
+  <path d="M256 330V420" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+  
+  <!-- Book Page Lines -->
+  <line x1="165" y1="340" x2="230" y2="352" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/>
+  <line x1="165" y1="365" x2="230" y2="377" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/>
+  <line x1="282" y1="352" x2="347" y2="340" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/>
+  <line x1="282" y1="377" x2="347" y2="365" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="goldGrad" x1="112" y1="100" x2="400" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FCD34D"/>
+      <stop offset="0.4" stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#B8860B"/>
+    </linearGradient>
+  </defs>
+</svg>

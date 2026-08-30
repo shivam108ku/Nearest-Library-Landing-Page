@@ -94,9 +94,11 @@ export const metadata: Metadata = {
     images: [`${siteUrl}/opengraph-image`],
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: [
+      { url: "/icon.svg?v=2", type: "image/svg+xml" },
+    ],
+    shortcut: "/icon.svg?v=2",
+    apple: "/icon.svg?v=2",
   },
   category: "Education",
 };
@@ -109,7 +111,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${bricolage.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/icon.svg?v=2" />
+        <link rel="shortcut icon" type="image/svg+xml" href="/icon.svg?v=2" />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <StructuredData />

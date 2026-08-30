@@ -55,7 +55,12 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-sm text-neutral-400 hover:text-[#B8860B] transition-colors font-medium">
+                    <a
+                      href={link === "Download" ? "https://play.google.com/store/apps/details?id=com.shivam.nearestlibrary&pli=1" : "#"}
+                      target={link === "Download" ? "_blank" : undefined}
+                      rel={link === "Download" ? "noopener noreferrer" : undefined}
+                      className="text-sm text-neutral-400 hover:text-[#B8860B] transition-colors font-medium"
+                    >
                       {link}
                     </a>
                   </li>
