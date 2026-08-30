@@ -9,8 +9,6 @@ import FAQ from "./components/FAQ";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 
-export const revalidate = 3600; // Instant Static ISR: Serves pre-rendered HTML in <15ms
-
 export default function Home() {
   return (
     <main>

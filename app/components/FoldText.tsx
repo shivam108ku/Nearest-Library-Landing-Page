@@ -269,9 +269,9 @@ const FoldText: React.FC<FoldTextProps> = ({
   };
 
   return (
-    <span ref={rootRef} className={`fold-text ${className}`.trim()} style={rootStyle}>
-      <span className="fold-text-sr-only">{text}</span>
-      <span className="fold-text-visual" aria-hidden="true">
+    <span ref={rootRef} className={`fold-text ${className}`.trim()} style={rootStyle} suppressHydrationWarning>
+      <span className="fold-text-sr-only" suppressHydrationWarning>{text}</span>
+      <span className="fold-text-visual" aria-hidden="true" suppressHydrationWarning>
         {segments}
       </span>
     </span>
