@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import FoldText from "./FoldText";
 
 const adminSteps = [
   {
@@ -67,8 +68,19 @@ export default function HowItWorks() {
               Quick Start Manual
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[#09090b] mb-4">
-            Manage Your Library in <span className="text-[#B8860B]">4 Simple Steps</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[#09090b] mb-4 text-center">
+            <FoldText
+              text="Manage Your Library in 4 Simple Steps"
+              splitBy="char"
+              hinge="top"
+              trigger="scroll"
+              duration={0.65}
+              stagger={0.02}
+              getCharColor={(char, idx) => {
+                if (idx >= 23) return "#B8860B";
+                return undefined;
+              }}
+            />
           </h2>
           <p className="text-base sm:text-lg text-[#475569] max-w-2xl mx-auto leading-relaxed">
             Taken directly from our official library admin workflow — from initial floor setup to contactless attendance and automated fee tracking.

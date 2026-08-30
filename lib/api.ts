@@ -45,19 +45,30 @@ export interface PublicLibrariesResponse {
   libraries: Library[];
 }
 
+let cachedLibraries: Library[] | null = null;
+let lastFetchTime = 0;
+const CACHE_TTL_MS = 1000 * 60 * 30; // 30 minutes
+
 /**
- * Fetch active public libraries using Axios.
+ * Fetch active public libraries using Axios with instant in-memory cache.
  * Relative endpoint path '/tenants/public/libraries' is appended to baseURL.
  */
 export async function fetchPublicLibraries(): Promise<Library[]> {
+  const now = Date.now();
+  if (cachedLibraries && cachedLibraries.length > 0 && (now - lastFetchTime) < CACHE_TTL_MS) {
+    return cachedLibraries;
+  }
+
   try {
     const response = await apiClient.get<PublicLibrariesResponse>(
       "/tenants/public/libraries"
     );
-    if (response.data && response.data.status === "ok") {
-      return response.data.libraries || [];
+    if (response.data && response.data.status === "ok" && Array.isArray(response.data.libraries)) {
+      cachedLibraries = response.data.libraries;
+      lastFetchTime = now;
+      return cachedLibraries;
     }
-    return [];
+    return cachedLibraries || [];
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error(
@@ -68,6 +79,6 @@ export async function fetchPublicLibraries(): Promise<Library[]> {
     } else {
       console.error("Unexpected error fetching public libraries:", error);
     }
-    return [];
+    return cachedLibraries || [];
   }
 }

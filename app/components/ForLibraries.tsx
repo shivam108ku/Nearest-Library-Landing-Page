@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import ProfileCard from "./ProfileCard";
+import FoldText from "./FoldText";
 
 const capabilities = [
   { icon: "⚡", label: "Multi-Floor Live Seat Grid" },
@@ -13,7 +14,8 @@ const capabilities = [
 
 export default function ForLibraries() {
   return (
-    <section id="for-libraries" className="pt-6 pb-20 px-4 sm:px-6 bg-gradient-to-b from-white via-[#F8FAFC] to-white">
+    <section id="about" className="pt-6 pb-20 px-4 sm:px-6 bg-gradient-to-b from-white via-[#F8FAFC] to-white relative scroll-mt-20">
+      <div id="for-libraries" className="absolute -top-20" />
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* ── Left Content: Developer Details & Info (Animated) ── */}
@@ -34,16 +36,21 @@ export default function ForLibraries() {
               </span>
             </motion.div>
 
-            {/* Heading (Rocket icon removed, smooth reveal animation) */}
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="text-3xl sm:text-4xl md:text-[3.2rem] font-semibold tracking-tight text-[#09090b] mb-5 leading-tight"
-            >
-              Developed by <span className="text-[#B8860B]">Shivam Kumar</span>
-            </motion.h2>
+            {/* Heading with 3D FoldText Animation */}
+            <h2 className="text-3xl sm:text-4xl md:text-[3.2rem] font-semibold tracking-tight text-[#09090b] mb-5 leading-tight text-left">
+              <FoldText
+                text="Developed by Shivam Kumar"
+                splitBy="char"
+                hinge="top"
+                trigger="scroll"
+                duration={0.65}
+                stagger={0.03}
+                getCharColor={(char, idx) => {
+                  if (idx >= 13) return "#B8860B";
+                  return undefined;
+                }}
+              />
+            </h2>
 
             {/* Description */}
             <motion.p

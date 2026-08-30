@@ -1,5 +1,6 @@
 import { fetchPublicLibraries } from "@/lib/api";
 import PartnerLibrariesClient from "./PartnerLibrariesClient";
+import FoldText from "./FoldText";
 
 export default async function PartnerLibraries() {
   const libraries = await fetchPublicLibraries();
@@ -23,8 +24,25 @@ export default async function PartnerLibraries() {
               Verified Partner Libraries
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-[3.2rem] font-semibold tracking-tight text-[#09090b] mb-4 leading-tight">
-            Libraries That <span className="text-[#B8860B]">Trust Us</span> 🏛️
+          <h2 className="text-3xl sm:text-4xl md:text-[3.2rem] font-semibold tracking-tight text-[#09090b] mb-4 leading-tight text-center">
+            <FoldText
+              text="Libraries That Trust Us 🏛️"
+              splitBy="char"
+              hinge="top"
+              trigger="scroll"
+              duration={0.65}
+              stagger={0.025}
+              charColors={{
+                15: "#B8860B",
+                16: "#B8860B",
+                17: "#B8860B",
+                18: "#B8860B",
+                19: "#B8860B",
+                20: "#B8860B",
+                21: "#B8860B",
+                22: "#B8860B",
+              }}
+            />
           </h2>
           <p className="text-base sm:text-lg text-[#475569] max-w-2xl mx-auto leading-relaxed">
             {libraries.length}+ libraries across India are already managing their seats, 

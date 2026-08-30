@@ -3,6 +3,7 @@
 import React from "react";
 import ScrollStack, { ScrollStackItem } from "./ScrollStack";
 import BlurText from "./BlurText";
+import FoldText from "./FoldText";
 
 const stackCards = [
   {
@@ -11,7 +12,7 @@ const stackCards = [
     title: "Multi-Floor Visual Seat Management",
     desc: "Monitor live seat occupancy floor by floor in real time. Allocate Morning, Evening, or Full Day shifts, manage reserved desks, and eliminate double-booking forever.",
     badges: ["Multi-Floor Grid", "Real-Time Occupancy", "Zero Double Booking"],
-    img: "/icon_seatmap.png",
+    img: "/icon_seatmap.jpg",
   },
   {
     step: "02",
@@ -19,7 +20,7 @@ const stackCards = [
     title: "Automated QR Code Check-in System",
     desc: "Replace paper registers with one simple QR code poster at your reception. Students scan to log their check-in and check-out, giving you accurate, timestamped attendance records.",
     badges: ["Dynamic QR Poster", "Instant Log-in", "Automated Timestamps"],
-    img: "/icon_attendance.png",
+    img: "/icon_attendance.jpg",
   },
   {
     step: "03",
@@ -27,7 +28,7 @@ const stackCards = [
     title: "Complete Member Database & History",
     desc: "Maintain digital profiles for every student with unique Member IDs, assigned shifts, payment status, and attendance logs. Search any student in seconds by name or phone.",
     badges: ["Digital Member Pass", "Full History", "One-Tap Search"],
-    img: "/icon_students.png",
+    img: "/icon_students.jpg",
   },
   {
     step: "04",
@@ -35,7 +36,7 @@ const stackCards = [
     title: "Smart Fee Tracking & WhatsApp Alerts",
     desc: "Track monthly collections and pending dues automatically. Generate professional digital receipts in one tap and send automated WhatsApp payment reminders to students.",
     badges: ["Auto Dues Tracking", "Digital Receipts", "WhatsApp Alerts"],
-    img: "/icon_billing.png",
+    img: "/icon_billing.jpg",
   },
 ];
 
@@ -53,8 +54,19 @@ export default function Features() {
               Built for Modern Librarians
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-[3rem] font-semibold tracking-tight text-[#09090b] mb-5 leading-tight">
-            Everything You Need to <span className="text-[#B8860B]">Run Your Library</span>
+          <h2 className="text-3xl sm:text-4xl md:text-[3rem] font-semibold tracking-tight text-[#09090b] mb-5 leading-tight text-center">
+            <FoldText
+              text="Everything You Need to Run Your Library"
+              splitBy="char"
+              hinge="top"
+              trigger="scroll"
+              duration={0.65}
+              stagger={0.02}
+              getCharColor={(char, idx) => {
+                if (idx >= 23) return "#B8860B";
+                return undefined;
+              }}
+            />
           </h2>
           <p className="text-base sm:text-lg text-[#475569] max-w-2xl mx-auto leading-relaxed">
             Say goodbye to paper registers, payment confusion, and manual tracking. Automate seat booking, QR attendance, billing, and student records — all right from your phone.

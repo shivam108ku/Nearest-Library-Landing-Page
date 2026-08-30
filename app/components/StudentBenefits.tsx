@@ -3,6 +3,7 @@
 import React from "react";
 import ScrollStack, { ScrollStackItem } from "./ScrollStack";
 import BlurText from "./BlurText";
+import FoldText from "./FoldText";
 
 const studentCards = [
   {
@@ -56,8 +57,19 @@ export default function StudentBenefits() {
               Why Students Love Your Library
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-[3rem] font-semibold tracking-tight text-[#09090b] mb-5 leading-tight">
-            Your Students Get <span className="text-[#B8860B]">More Than a Seat</span>
+          <h2 className="text-3xl sm:text-4xl md:text-[3rem] font-semibold tracking-tight text-[#09090b] mb-5 leading-tight text-center">
+            <FoldText
+              text="Your Students Get More Than a Seat"
+              splitBy="char"
+              hinge="top"
+              trigger="scroll"
+              duration={0.65}
+              stagger={0.02}
+              getCharColor={(char, idx) => {
+                if (idx >= 18) return "#B8860B";
+                return undefined;
+              }}
+            />
           </h2>
           <p className="text-base sm:text-lg text-[#475569] max-w-2xl mx-auto leading-relaxed">
             When you manage your library with NearestLibrary, your students automatically get daily exam prep, digital passes, and habit trackers — all built-in.

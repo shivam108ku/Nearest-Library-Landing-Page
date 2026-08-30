@@ -21,12 +21,8 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-7 h-7 flex items-center justify-center text-white">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6">
-                  <ellipse cx="12" cy="12" rx="4" ry="10" transform="rotate(45 12 12)" strokeLinecap="round" />
-                  <ellipse cx="12" cy="12" rx="4" ry="10" transform="rotate(-45 12 12)" strokeLinecap="round" />
-                  <circle cx="12" cy="12" r="1.5" fill="currentColor" />
-                </svg>
+              <div className="w-8 h-8 rounded-xl overflow-hidden flex-shrink-0">
+                <img src="/logo.png" alt="Nearest Library Logo" className="w-full h-full object-cover" />
               </div>
               <span className="text-lg font-extrabold tracking-tight">
                 Nearest <span className="text-[#B8860B]">Lib</span>rary
@@ -56,7 +52,17 @@ export default function Footer() {
                 {col.links.map((link) => (
                   <li key={link}>
                     <a
-                      href={link === "Download" ? "https://play.google.com/store/apps/details?id=com.shivam.nearestlibrary&pli=1" : "#"}
+                      href={
+                        link === "Download"
+                          ? "https://play.google.com/store/apps/details?id=com.shivam.nearestlibrary&pli=1"
+                          : link === "About Us"
+                          ? "#about"
+                          : link === "For Libraries"
+                          ? "#about"
+                          : link === "Features"
+                          ? "#features"
+                          : "#"
+                      }
                       target={link === "Download" ? "_blank" : undefined}
                       rel={link === "Download" ? "noopener noreferrer" : undefined}
                       className="text-sm text-neutral-400 hover:text-[#B8860B] transition-colors font-medium"

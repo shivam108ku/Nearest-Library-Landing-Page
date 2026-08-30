@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import FoldText from "./FoldText";
 
 const faqs = [
   {
@@ -40,8 +41,19 @@ export default function FAQ() {
               Got Questions?
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-[#0F172A] mb-4">
-            Frequently Asked <span className="text-[#B8860B]">Questions</span> 💡
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[#09090b] mb-4 text-center">
+            <FoldText
+              text="Frequently Asked Questions 💡"
+              splitBy="char"
+              hinge="top"
+              trigger="scroll"
+              duration={0.65}
+              stagger={0.025}
+              getCharColor={(char, idx) => {
+                if (idx >= 17 && idx <= 25) return "#B8860B";
+                return undefined;
+              }}
+            />
           </h2>
           <p className="text-lg text-[#475569] max-w-lg mx-auto">
             Everything you need to know about booking study seats and managing your library.

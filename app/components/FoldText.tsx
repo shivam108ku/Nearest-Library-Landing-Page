@@ -58,9 +58,9 @@ const FoldText: React.FC<FoldTextProps> = ({
   perspective = 700,
   creaseShading = 0.55,
   trigger = 'mount',
-  fontSize = 80,
-  fontWeight = 800,
-  color = '#f7f2e8',
+  fontSize,
+  fontWeight,
+  color,
   charColors,
   getCharColor,
   className = '',
@@ -218,9 +218,11 @@ const FoldText: React.FC<FoldTextProps> = ({
   ]);
 
   const rootStyle: React.CSSProperties = {
-    ['--fold-text-font-size' as any]: typeof fontSize === 'number' ? `${fontSize}px` : fontSize,
-    ['--fold-text-font-weight' as any]: fontWeight,
-    ['--fold-text-color' as any]: color,
+    ...(fontSize && fontSize !== 'inherit'
+      ? { ['--fold-text-font-size' as any]: typeof fontSize === 'number' ? `${fontSize}px` : fontSize }
+      : {}),
+    ...(fontWeight ? { ['--fold-text-font-weight' as any]: fontWeight } : {}),
+    ...(color ? { ['--fold-text-color' as any]: color } : {}),
     fontFamily: 'var(--font-bricolage), "Bricolage Grotesque", var(--font-sans), sans-serif',
     ...style
   };

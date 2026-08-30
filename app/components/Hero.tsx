@@ -13,13 +13,13 @@ export default function Hero() {
 
       {/* ── Center Demo Content exactly matching screenshot ── */}
       <div className="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center">
-        {/* Top Pill Badge: NEW Creative Components */}
+        {/* Top Pill Badge: Relevant to NearestLibrary */}
         <div className="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur-md border border-neutral-200/80 rounded-full pl-1.5 pr-4 py-1 text-sm shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-8">
           <span className="bg-neutral-900 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-            NEW
+            NOW LIVE
           </span>
           <span className="text-xs sm:text-sm font-medium text-neutral-600">
-            Creative Components
+            Find & Reserve Nearby Study Libraries
           </span>
         </div>
 
