@@ -12,6 +12,9 @@ const BASE_URL =
 const API_KEY =
   process.env.LANDING_API_KEY || "nl_landing_secure_key_2026";
 
+const APP_CLIENT_KEY =
+  process.env.APP_CLIENT_KEY || "nl_mob_sec_8f92a1c4e7b0d3e5f2a1";
+
 /**
  * Centralized Axios instance with custom headers and timeout
  */
@@ -21,6 +24,8 @@ export const apiClient = axios.create({
   headers: {
     "Content-Type": "application/json",
     "x-landing-api-key": API_KEY,
+    "x-app-client-key": APP_CLIENT_KEY,
+    "User-Agent": "NearestLibrary-Web/1.0",
   },
 });
 
