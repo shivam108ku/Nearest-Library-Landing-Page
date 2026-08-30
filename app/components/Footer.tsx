@@ -15,25 +15,33 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0F172A] text-white pt-16 pb-8 px-6">
+    <footer className="bg-[#09090b] text-white pt-16 pb-8 px-6 border-t border-neutral-800">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-5 gap-12 mb-14">
           {/* Brand Column */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#B8860B] to-[#D4A017] flex items-center justify-center">
-                <span className="text-white text-lg font-black">N</span>
+              <div className="w-7 h-7 flex items-center justify-center text-white">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6">
+                  <ellipse cx="12" cy="12" rx="4" ry="10" transform="rotate(45 12 12)" strokeLinecap="round" />
+                  <ellipse cx="12" cy="12" rx="4" ry="10" transform="rotate(-45 12 12)" strokeLinecap="round" />
+                  <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+                </svg>
               </div>
               <span className="text-lg font-extrabold tracking-tight">
-                Nearest<span className="text-[#D4A017]">Library</span>
+                Nearest <span className="text-[#B8860B]">Lib</span>rary
               </span>
             </div>
-            <p className="text-sm text-white/50 leading-relaxed max-w-xs mb-6">
+            <p className="text-sm text-neutral-400 leading-relaxed max-w-xs mb-6">
               India&apos;s smartest library seat booking platform. Helping students find their perfect study spot, every single day.
             </p>
             <div className="flex gap-3">
               {["X", "In", "Ig", "Yt"].map((s) => (
-                <a key={s} href="#" className="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 flex items-center justify-center text-xs font-bold text-white/40 hover:text-white/80 transition-all">
+                <a
+                  key={s}
+                  href="#"
+                  className="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-xs font-bold text-neutral-400 hover:text-white transition-all"
+                >
                   {s}
                 </a>
               ))}
@@ -43,11 +51,11 @@ export default function Footer() {
           {/* Link Columns */}
           {footerLinks.map((col) => (
             <div key={col.title}>
-              <h4 className="text-sm font-extrabold text-white/80 mb-4 uppercase tracking-wider">{col.title}</h4>
-              <ul className="space-y-3">
+              <h4 className="text-xs font-bold text-neutral-300 mb-4 uppercase tracking-wider">{col.title}</h4>
+              <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-sm text-white/40 hover:text-[#D4A017] transition-colors font-medium">
+                    <a href="#" className="text-sm text-neutral-400 hover:text-[#B8860B] transition-colors font-medium">
                       {link}
                     </a>
                   </li>
@@ -58,13 +66,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/30 font-medium" suppressHydrationWarning>
-            © {new Date().getFullYear()} NearestLibrary. Made with 💛 in India. All rights reserved.
-          </p>
-          <p className="text-xs text-white/20 font-medium">
-            Built for students who dream big ✨
-          </p>
+        <div className="border-t border-neutral-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-neutral-500">
+          <p>&copy; {new Date().getFullYear()} NearestLibrary Inc. All rights reserved.</p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-neutral-300 transition-colors">Privacy</a>
+            <a href="#" className="hover:text-neutral-300 transition-colors">Terms</a>
+            <a href="#" className="hover:text-neutral-300 transition-colors">Cookies</a>
+          </div>
         </div>
       </div>
     </footer>

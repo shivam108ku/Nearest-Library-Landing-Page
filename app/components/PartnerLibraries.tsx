@@ -177,18 +177,20 @@ export default async function PartnerLibraries() {
   if (libraries.length === 0) return null;
 
   return (
-    <section id="partner-libraries" className="py-28 px-6 bg-gradient-to-b from-white to-[#FDF8EF]/30">
+    <section id="partner-libraries" className="py-28 px-6 bg-gradient-to-b from-white via-[#F8FAFC] to-white">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-[#D1FAE5] border border-[#10B981]/20 rounded-full px-5 py-2 mb-5">
-            <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-            <span className="text-xs font-bold text-[#065F46] tracking-wide uppercase">
+          <div className="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur-md border border-neutral-200/80 rounded-full pl-1.5 pr-4 py-1 text-sm shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-6">
+            <span className="bg-neutral-900 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+              VERIFIED
+            </span>
+            <span className="text-xs sm:text-sm font-medium text-neutral-600">
               Live on Platform
             </span>
           </div>
           <h2 className="text-4xl md:text-[3.2rem] font-black tracking-tight text-[#0F172A] mb-5 leading-tight">
-            Libraries That <span className="shimmer-gold">Trust Us</span> 🏛️
+            Libraries That <span className="text-[#B8860B]">Trust Us</span> 🏛️
           </h2>
           <p className="text-[17px] text-[#475569] max-w-xl mx-auto leading-relaxed">
             {libraries.length}+ libraries across India are already managing their seats, 

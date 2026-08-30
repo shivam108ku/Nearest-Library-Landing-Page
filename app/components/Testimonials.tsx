@@ -1,10 +1,3 @@
-const stats = [
-  { value: "500+", label: "Libraries Listed", emoji: "📚" },
-  { value: "10K+", label: "Happy Students", emoji: "😊" },
-  { value: "50K+", label: "Seats Booked", emoji: "💺" },
-  { value: "98%", label: "Satisfaction Rate", emoji: "⭐" },
-];
-
 const testimonials = [
   {
     name: "Priya Sharma",
@@ -42,26 +35,21 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-28 px-6">
+    <section id="testimonials" className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
-        {/* Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-24">
-          {stats.map((s, i) => (
-            <div key={i} className="stat-card">
-              <span className="text-3xl mb-3 block">{s.emoji}</span>
-              <p className="text-3xl md:text-4xl font-black text-[#0F172A] mb-1.5 tracking-tight">{s.value}</p>
-              <p className="text-sm text-[#475569] font-semibold">{s.label}</p>
-            </div>
-          ))}
-        </div>
 
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-[#FDF8EF] border border-[#B8860B]/20 rounded-full px-5 py-2 mb-5">
-            <span className="text-xs font-bold text-[#B8860B] tracking-wide uppercase">Real Stories, Real Impact</span>
+          <div className="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur-md border border-neutral-200/80 rounded-full pl-1.5 pr-4 py-1 text-sm shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-6">
+            <span className="bg-neutral-900 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+              REVIEWS
+            </span>
+            <span className="text-xs sm:text-sm font-medium text-neutral-600">
+              Real Stories, Real Impact
+            </span>
           </div>
-          <h2 className="text-4xl md:text-[3.2rem] font-black tracking-tight text-[#0F172A] mb-5 leading-tight">
-            Students & Librarians <span className="shimmer-gold">Love It</span> 💬
+          <h2 className="text-3xl sm:text-4xl md:text-[3.2rem] font-semibold tracking-tight text-[#09090b] mb-5 leading-tight">
+            Students & Librarians <span className="text-[#B8860B]">Love It</span> 💬
           </h2>
           <p className="text-[17px] text-[#475569] max-w-xl mx-auto leading-relaxed">
             Hear from students who found their perfect study spot and library owners who transformed their operations.

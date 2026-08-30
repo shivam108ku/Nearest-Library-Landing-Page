@@ -4,64 +4,67 @@ import React from "react";
 import ScrollStack, { ScrollStackItem } from "./ScrollStack";
 import BlurText from "./BlurText";
 
-const stackCards = [
+const studentCards = [
   {
     step: "01",
-    tag: "LIVE SEAT GRID",
-    title: "Multi-Floor Visual Seat Management",
-    desc: "Monitor live seat occupancy floor by floor in real time. Allocate Morning, Evening, or Full Day shifts, manage reserved desks, and eliminate double-booking forever.",
-    badges: ["Multi-Floor Grid", "Real-Time Occupancy", "Zero Double Booking"],
-    img: "/icon_seatmap.png",
+    tag: "EXAM PREP",
+    title: "Daily Current Affairs & PIB Updates",
+    desc: "Curated exam-oriented daily news, PIB releases & key takeaways in Hindi & English for UPSC, SSC, and state competitive exams.",
+    badges: ["UPSC & SSC Focus", "PIB Press Releases", "Daily Digest"],
+    img: "/icon_current_affairs.jpg",
   },
   {
     step: "02",
-    tag: "DIGITAL ATTENDANCE",
-    title: "Automated QR Code Check-in System",
-    desc: "Replace paper registers with one simple QR code poster at your reception. Students scan to log their check-in and check-out, giving you accurate, timestamped attendance records.",
-    badges: ["Dynamic QR Poster", "Instant Log-in", "Automated Timestamps"],
-    img: "/icon_attendance.png",
+    tag: "DIGITAL IDENTITY",
+    title: "Live Seat Details & Digital Pass",
+    desc: "Assigned desk number, floor, shift timings & booking validity — all displayed on a shareable digital library identity card.",
+    badges: ["Floor & Seat Number", "Digital Library ID", "Active Shift Status"],
+    img: "/icon_digital_pass.jpg",
   },
   {
     step: "03",
-    tag: "STUDENT REGISTRY",
-    title: "Complete Member Database & History",
-    desc: "Maintain digital profiles for every student with unique Member IDs, assigned shifts, payment status, and attendance logs. Search any student in seconds by name or phone.",
-    badges: ["Digital Member Pass", "Full History", "One-Tap Search"],
-    img: "/icon_students.png",
+    tag: "STUDY CONSISTENCY",
+    title: "30-Day Study Streak & Activity Grid",
+    desc: "A GitHub-style attendance calendar motivates students to maintain study discipline, track total hours, and build long streaks.",
+    badges: ["30-Day Activity Grid", "Daily Study Streak", "Study Hours Logged"],
+    img: "/icon_study_streak.jpg",
   },
   {
     step: "04",
-    tag: "AUTOMATED REVENUE",
-    title: "Smart Fee Tracking & WhatsApp Alerts",
-    desc: "Track monthly collections and pending dues automatically. Generate professional digital receipts in one tap and send automated WhatsApp payment reminders to students.",
-    badges: ["Auto Dues Tracking", "Digital Receipts", "WhatsApp Alerts"],
-    img: "/icon_billing.png",
+    tag: "SMART ATTENDANCE",
+    title: "Instant QR Check-in & Check-out",
+    desc: "Seamless contactless entry and exit punch right from the phone at your reception standee without any paper registers.",
+    badges: ["One-Tap QR Punch", "Automatic In/Out Logs", "Zero Queues"],
+    img: "/icon_qr_checkin.jpg",
   },
 ];
 
-export default function Features() {
+export default function StudentBenefits() {
   return (
-    <section id="features" className="pt-20 pb-4 px-4 sm:px-6 relative bg-white">
+    <section
+      id="student-benefits"
+      className="pt-16 pb-4 px-4 sm:px-6 bg-gradient-to-b from-[#F8FAFC] via-white to-white"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur-md border border-neutral-200/80 rounded-full pl-1.5 pr-4 py-1 text-sm shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-6">
-            <span className="bg-neutral-900 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-              MANAGEMENT
+            <span className="bg-[#B8860B] text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+              STUDENT EXPERIENCE
             </span>
             <span className="text-xs sm:text-sm font-medium text-neutral-600">
-              Built for Modern Librarians
+              Why Students Love Your Library
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-[3rem] font-semibold tracking-tight text-[#09090b] mb-5 leading-tight">
-            Everything You Need to <span className="text-[#B8860B]">Run Your Library</span>
+            Your Students Get <span className="text-[#B8860B]">More Than a Seat</span>
           </h2>
           <p className="text-base sm:text-lg text-[#475569] max-w-2xl mx-auto leading-relaxed">
-            Say goodbye to paper registers, payment confusion, and manual tracking. Automate seat booking, QR attendance, billing, and student records — all right from your phone.
+            When you manage your library with NearestLibrary, your students automatically get daily exam prep, digital passes, and habit trackers — all built-in.
           </p>
         </div>
 
-        {/* ── ScrollStack Showcase: Text with BlurText + High-Res Illustration ── */}
+        {/* ── ScrollStack: Exact same smooth parameters and styling as Features ── */}
         <ScrollStack
           itemDistance={90}
           itemScale={0.035}
@@ -73,7 +76,7 @@ export default function Features() {
           blurAmount={0}
           useWindowScroll={true}
         >
-          {stackCards.map((card, i) => (
+          {studentCards.map((card, i) => (
             <ScrollStackItem
               key={i}
               style={{
@@ -89,12 +92,12 @@ export default function Features() {
                   <span className="bg-neutral-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                     {card.step}
                   </span>
-                  <span className="text-neutral-600 font-semibold">
+                  <span className="text-[#B8860B] font-bold">
                     {card.tag}
                   </span>
                 </div>
 
-                {/* Title with BlurText animation (fontWeight: 600) */}
+                {/* Title with BlurText animation */}
                 <div className="mb-3 w-full">
                   <BlurText
                     text={card.title}
@@ -130,7 +133,7 @@ export default function Features() {
                 </div>
               </div>
 
-              {/* Right Column: Illustration Preview */}
+              {/* Right Column: Illustration Preview (exact same container styling as Features) */}
               <div className="hidden md:flex flex-shrink-0 w-64 h-64 lg:w-72 lg:h-72 rounded-3xl overflow-hidden bg-neutral-50/80 border border-neutral-200/70 p-3 items-center justify-center shadow-inner group">
                 <img
                   src={card.img}

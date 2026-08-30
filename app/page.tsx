@@ -1,8 +1,8 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Features from "./components/Features";
-import AppShowcase from "./components/AppShowcase";
 import HowItWorks from "./components/HowItWorks";
+import StudentBenefits from "./components/StudentBenefits";
 import Testimonials from "./components/Testimonials";
 import PartnerLibraries from "./components/PartnerLibraries";
 import ForLibraries from "./components/ForLibraries";
@@ -16,8 +16,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Features />
-      <AppShowcase />
       <HowItWorks />
+      <StudentBenefits />
       <Testimonials />
       <PartnerLibraries />
       <ForLibraries />

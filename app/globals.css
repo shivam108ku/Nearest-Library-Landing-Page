@@ -2,19 +2,21 @@
 
 /* ── Design System Tokens ─────────────────────────────── */
 :root {
-  --navy: #0F172A;
-  --navy-light: #1E293B;
-  --navy-soft: #334155;
+  --font-bricolage: var(--font-bricolage), "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-geist-sans), "Inter", system-ui, -apple-system, sans-serif;
+  --navy: #09090b;
+  --navy-light: #18181b;
+  --navy-soft: #27272a;
   --gold: #B8860B;
   --gold-light: #D4A017;
   --gold-glow: #E5B844;
-  --cream: #FDF8EF;
-  --cream-light: #FFFDF7;
-  --warm-white: #FEFCF8;
+  --cream: #FAFAFA;
+  --cream-light: #FFFFFF;
+  --warm-white: #FFFFFF;
   --surface: #FFFFFF;
-  --bg: #F8FAFC;
-  --border: #E8ECF4;
-  --text-primary: #0F172A;
+  --bg: #FFFFFF;
+  --border: rgba(0, 0, 0, 0.07);
+  --text-primary: #09090b;
   --text-secondary: #475569;
   --text-muted: #94A3B8;
   --emerald: #10B981;
@@ -42,16 +44,29 @@
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+html.lenis, html.lenis-smooth {
+  scroll-behavior: auto !important;
+}
 
 body {
-  background: var(--cream-light);
-  color: var(--text-primary);
-  font-family: var(--font-sans, "Inter", system-ui, -apple-system, sans-serif);
+  background: #FFFFFF;
+  color: #09090b;
+  font-family: var(--font-bricolage), var(--font-sans), "Inter", system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-bricolage), "Bricolage Grotesque", -apple-system, sans-serif !important;
+  letter-spacing: -0.035em;
+  font-weight: 600 !important;
+  color: #09090b;
+}
+
+.text-\[\#0F172A\] {
+  color: #09090b !important;
 }
 
 /* ── Selection ─────────────────────────────────────────── */
@@ -60,14 +75,16 @@ body {
   color: var(--navy);
 }
 
-/* ── Scrollbar ─────────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.15);
-  border-radius: 999px;
+/* ── Scrollbar (Hidden for clean full-screen look) ───────── */
+::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  height: 0px;
 }
-::-webkit-scrollbar-thumb:hover { background: rgba(15, 23, 42, 0.3); }
+html, body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 /* ── Animated Gradient Background ─────────────────────── */
 .gradient-bg {
@@ -145,40 +162,32 @@ body {
 
 /* ── Glass Card ───────────────────────────────────────── */
 .glass-card {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
-/* ── Navy Card ────────────────────────────────────────── */
+/* ── Navy / Carbon Card ───────────────────────────────── */
 .navy-glass {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #09090b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
 }
 
-/* ── Gold Shimmer Text ────────────────────────────────── */
-.shimmer-gold {
-  background: linear-gradient(
-    105deg,
-    var(--gold) 0%,
-    var(--gold-glow) 40%,
-    var(--gold) 60%,
-    var(--gold-light) 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 4s linear infinite;
-}
-@keyframes shimmer {
-  to { background-position: 200% center; }
+/* ── Gold Accent Text (Exact Match to Hero 'Lib') ─────── */
+.shimmer-gold, .text-gold {
+  color: #B8860B !important;
+  -webkit-text-fill-color: #B8860B !important;
+  background: none !important;
+  animation: none !important;
+  display: inline;
 }
 
 /* ── Gradient Text ────────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, var(--navy) 0%, #4338CA 50%, var(--navy) 100%);
+  background: linear-gradient(135deg, #09090b 0%, #18181b 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -186,68 +195,53 @@ body {
 
 /* ── CTA Button ───────────────────────────────────────── */
 .cta-button {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  background: #09090b;
   color: white;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.cta-button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-.cta-button:hover::before { opacity: 1; }
 .cta-button:hover {
+  background: #18181b;
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(184, 134, 11, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 .cta-button span { position: relative; z-index: 1; }
 
 /* ── Secondary Button ─────────────────────────────────── */
 .secondary-button {
-  border: 2px solid var(--border);
-  color: var(--navy);
-  background: var(--surface);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #09090b;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   transition: all 0.3s ease;
 }
 .secondary-button:hover {
-  border-color: var(--gold);
-  background: var(--cream);
+  border-color: rgba(0, 0, 0, 0.25);
+  background: #FFFFFF;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 /* ── Feature Card ─────────────────────────────────────── */
 .feature-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 24px;
   padding: 28px 24px;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
-}
-.feature-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
-  opacity: 0;
-  transition: opacity 0.4s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 .feature-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-  border-color: rgba(184, 134, 11, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+  border-color: rgba(184, 134, 11, 0.25);
 }
-.feature-card:hover::before { opacity: 1; }
 
 /* ── Stat Card ────────────────────────────────────────── */
 .stat-card {
