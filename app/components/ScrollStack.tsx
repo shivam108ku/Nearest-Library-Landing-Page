@@ -57,20 +57,40 @@ const scrollSubscribers = new Set<() => void>();
 function subscribeToWindowScroll(cb: () => void): () => void {
   if (typeof window === 'undefined') return () => {};
 
-  if (!globalLenis) {
+  scrollSubscribers.add(cb);
+
+  let ticking = false;
+  const onNativeScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        scrollSubscribers.forEach((fn) => fn());
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
+
+  window.addEventListener('scroll', onNativeScroll, { passive: true });
+
+  const isMobile = window.innerWidth < 768;
+  if (!globalLenis && !isMobile) {
     globalLenis = new Lenis({
       duration: 1.0,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      syncTouch: false, // 100% native 60fps/120fps touch momentum scroll on phones
-      touchMultiplier: 1,
-      infinite: false,
+      syncTouch: false,
       wheelMultiplier: 1,
       lerp: 0.1,
     });
 
     globalLenis.on('scroll', () => {
-      scrollSubscribers.forEach((fn) => fn());
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          scrollSubscribers.forEach((fn) => fn());
+          ticking = false;
+        });
+        ticking = true;
+      }
     });
 
     const raf = (time: number) => {
@@ -82,10 +102,9 @@ function subscribeToWindowScroll(cb: () => void): () => void {
     globalRafId = requestAnimationFrame(raf);
   }
 
-  scrollSubscribers.add(cb);
-
   return () => {
     scrollSubscribers.delete(cb);
+    window.removeEventListener('scroll', onNativeScroll);
     if (scrollSubscribers.size === 0 && globalLenis) {
       if (globalRafId) cancelAnimationFrame(globalRafId);
       globalLenis.destroy();
@@ -114,8 +133,18 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const endSpacerRef = useRef<HTMLDivElement | null>(null);
   const stackCompletedRef = useRef(false);
   const cardsRef = useRef<HTMLElement[]>([]);
+  const cardTopsRef = useRef<number[]>([]);
+  const endTopRef = useRef<number>(0);
   const lastTransformsRef = useRef<Map<number, any>>(new Map());
   const isUpdatingRef = useRef(false);
+
+  const measureCardTops = useCallback(() => {
+    if (!cardsRef.current.length) return;
+    cardTopsRef.current = cardsRef.current.map((c) => (c ? getElementDocumentTop(c) : 0));
+    if (endSpacerRef.current) {
+      endTopRef.current = getElementDocumentTop(endSpacerRef.current);
+    }
+  }, []);
 
   const calculateProgress = useCallback((scrollTop: number, start: number, end: number) => {
     if (scrollTop < start) return 0;
@@ -154,21 +183,36 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     isUpdatingRef.current = true;
 
     const { scrollTop, containerHeight } = getScrollData();
-    const stackPositionPx = parsePercentage(stackPosition, containerHeight);
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+    const effectiveStackDistance = isMobile ? Math.min(itemStackDistance, 14) : itemStackDistance;
+    const stackPositionPx = isMobile
+      ? containerHeight * 0.12
+      : parsePercentage(stackPosition, containerHeight);
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
 
-    const endElement = endSpacerRef.current;
-    const endElementTop = getElementDocumentTop(endElement);
+    // Use cached document tops to eliminate forced reflows during scroll
+    let endElementTop = endTopRef.current;
+    if (!endElementTop && endSpacerRef.current) {
+      endElementTop = getElementDocumentTop(endSpacerRef.current);
+      endTopRef.current = endElementTop;
+    }
 
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
 
-      // Static position calculation via offsetTop chain — invariant under translate3d
-      const cardTop = getElementDocumentTop(card);
-      const triggerStart = cardTop - stackPositionPx - itemStackDistance * i;
+      let cardTop = cardTopsRef.current[i];
+      if (!cardTop) {
+        cardTop = getElementDocumentTop(card);
+        cardTopsRef.current[i] = cardTop;
+      }
+
+      const triggerStart = cardTop - stackPositionPx - effectiveStackDistance * i;
       const triggerEnd = cardTop - scaleEndPositionPx;
-      const pinStart = cardTop - stackPositionPx - itemStackDistance * i;
-      const pinEnd = endElementTop - containerHeight / 2;
+      const pinStart = cardTop - stackPositionPx - effectiveStackDistance * i;
+      const pinEnd = isMobile
+        ? endElementTop - containerHeight * 0.35
+        : endElementTop - containerHeight / 2;
 
       const scaleProgress = calculateProgress(scrollTop, triggerStart, triggerEnd);
       const targetScale = baseScale + i * itemScale;
@@ -265,40 +309,51 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     cardsRef.current = cards;
     const transformsCache = lastTransformsRef.current;
 
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     cards.forEach((card, i) => {
       if (i < cards.length - 1) {
-        card.style.marginBottom = `${itemDistance}px`;
+        card.style.marginBottom = `${isMobile ? 24 : itemDistance}px`;
       }
-      card.style.willChange = 'transform, filter';
+      card.style.willChange = 'transform';
       card.style.transformOrigin = 'top center';
       card.style.backfaceVisibility = 'hidden';
       card.style.transform = 'translateZ(0)';
       card.style.webkitTransform = 'translateZ(0)';
-      card.style.perspective = '1000px';
-      card.style.webkitPerspective = '1000px';
     });
 
-    // Subscribe to singleton Lenis loop
+    // Pre-measure positions once layout is settled
+    measureCardTops();
     const unsubscribe = subscribeToWindowScroll(updateCardTransforms);
     updateCardTransforms();
 
+    // Re-measure after fonts & images hydrate
+    const settleTimer = setTimeout(() => {
+      measureCardTops();
+      updateCardTransforms();
+    }, 150);
+
     const handleResize = () => {
+      measureCardTops();
       updateCardTransforms();
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     return () => {
+      clearTimeout(settleTimer);
       unsubscribe();
       window.removeEventListener('resize', handleResize);
       stackCompletedRef.current = false;
       cardsRef.current = [];
+      cardTopsRef.current = [];
+      endTopRef.current = 0;
       transformsCache.clear();
       isUpdatingRef.current = false;
     };
   }, [
     itemDistance,
     useWindowScroll,
-    updateCardTransforms
+    updateCardTransforms,
+    measureCardTops
   ]);
 
   return (
