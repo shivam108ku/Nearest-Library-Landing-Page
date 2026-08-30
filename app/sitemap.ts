@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/#testimonials`,
+      url: `${baseUrl}/#partner-libraries`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,

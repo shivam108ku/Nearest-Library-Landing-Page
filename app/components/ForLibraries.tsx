@@ -1,60 +1,169 @@
-const libraryFeatures = [
-  { emoji: "📊", title: "Live Analytics Dashboard", desc: "Real-time occupancy, revenue tracking, and daily reports at a glance." },
-  { emoji: "💰", title: "Automated Billing", desc: "Track payments, dues, generate receipts. No more manual cash registers." },
-  { emoji: "👥", title: "Student Registry & Profiles", desc: "Complete member database with IDs, contact details, and booking history." },
-  { emoji: "🗺️", title: "Multi-Floor Seat Maps", desc: "Configure separate floors with independent seat layouts and shift timings." },
-  { emoji: "📅", title: "Shift Management", desc: "Morning, Evening, Full Day — custom pricing and seat allocation per shift." },
-  { emoji: "📱", title: "WhatsApp Alerts", desc: "Automated booking confirmations, payment reminders sent directly via WhatsApp." },
-  { emoji: "📋", title: "Enquiry Pipeline", desc: "Track walk-in enquiries, follow up, and convert them into active members." },
-  { emoji: "📈", title: "Revenue Reports", desc: "Monthly, weekly, daily revenue breakdowns by floor, shift, and payment type." },
+"use client";
+
+import React from "react";
+import { motion } from "motion/react";
+import ProfileCard from "./ProfileCard";
+
+const capabilities = [
+  { icon: "⚡", label: "Multi-Floor Live Seat Grid" },
+  { icon: "⚡", label: "QR Scan Attendance & Punch Logs" },
+  { icon: "⚡", label: "WhatsApp Invoicing & Dues Alerts" },
+  { icon: "⚡", label: "PIB Current Affairs & Prep Grid" },
 ];
 
 export default function ForLibraries() {
   return (
-    <section id="for-libraries" className="py-28 px-6 bg-gradient-to-b from-white via-[#F8FAFC] to-white">
+    <section id="for-libraries" className="pt-6 pb-20 px-4 sm:px-6 bg-gradient-to-b from-white via-[#F8FAFC] to-white">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <div>
-            <div className="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur-md border border-neutral-200/80 rounded-full pl-1.5 pr-4 py-1 text-sm shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-6">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* ── Left Content: Developer Details & Info (Animated) ── */}
+          <div className="lg:col-span-7 pt-2 flex flex-col items-start">
+            {/* Tag Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="inline-flex items-center gap-2.5 bg-white border border-neutral-200/80 rounded-full pl-1.5 pr-4 py-1 text-sm shadow-2xs mb-5"
+            >
               <span className="bg-neutral-900 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                OWNERS
+                CREATOR
               </span>
               <span className="text-xs sm:text-sm font-medium text-neutral-600">
-                For Library Owners
+                Software Engineer & Founder
               </span>
-            </div>
-            <h2 className="text-4xl md:text-[3.2rem] font-black tracking-tight text-[#0F172A] mb-6 leading-tight">
-              Run Your Library Like a <span className="text-[#B8860B]">Pro</span> 🏆
-            </h2>
-            <p className="text-[17px] text-[#475569] leading-relaxed mb-5">
-              Replace paper registers, manual billing, and phone calls with a complete digital toolkit. NearestLibrary gives you everything to manage seats, students, payments, attendance, and enquiries — all from your phone.
-            </p>
-            <p className="text-sm text-[#64748B] leading-relaxed mb-8 border-l-[3px] border-[#B8860B]/50 pl-4 italic">
-              &ldquo;My revenue went up 40% after switching to NearestLibrary. No more confusion with registers.&rdquo; — Rajesh K., Library Owner, Jaipur
-            </p>
+            </motion.div>
 
-            <div className="flex flex-wrap gap-4">
+            {/* Heading (Rocket icon removed, smooth reveal animation) */}
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className="text-3xl sm:text-4xl md:text-[3.2rem] font-semibold tracking-tight text-[#09090b] mb-5 leading-tight"
+            >
+              Developed by <span className="text-[#B8860B]">Shivam Kumar</span>
+            </motion.h2>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+              className="text-base sm:text-lg text-[#475569] leading-relaxed mb-6"
+            >
+              NearestLibrary is crafted and developed by Shivam Kumar — built to empower library owners across India with an end-to-end digital operating system. From eliminating manual paper registers and managing live seat grids to automated WhatsApp billing and daily PIB current affairs for students.
+            </motion.p>
+
+            {/* Core Capability Badges (Staggered Animation) */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-7 w-full"
+            >
+              {capabilities.map((cap, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex items-center gap-2.5 bg-white border border-neutral-200/80 hover:border-neutral-300 rounded-xl p-3 shadow-2xs transition-colors"
+                >
+                  <span className="w-6 h-6 rounded-lg bg-neutral-900 text-white flex items-center justify-center font-bold text-xs">
+                    {cap.icon}
+                  </span>
+                  <span className="text-xs sm:text-sm font-medium text-neutral-800">
+                    {cap.label}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Contact Email Callout Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -2 }}
+              className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 bg-white border border-neutral-200/90 hover:border-neutral-300 rounded-2xl p-4 sm:p-4.5 shadow-2xs hover:shadow-xs mb-8 w-full transition-all"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-neutral-950 text-white flex items-center justify-center font-bold text-lg flex-shrink-0 shadow-xs">
+                  ✉️
+                </div>
+                <div>
+                  <p className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">Contact & Inquiries</p>
+                  <a
+                    href="mailto:shivam108ku@gmail.com"
+                    className="text-sm sm:text-base font-bold text-[#09090b] hover:text-[#B8860B] transition-colors"
+                  >
+                    shivam108ku@gmail.com
+                  </a>
+                </div>
+              </div>
+              <a
+                href="mailto:shivam108ku@gmail.com"
+                className="inline-flex items-center justify-center gap-1.5 bg-neutral-900 text-white hover:bg-neutral-800 text-xs font-semibold px-4 py-2.5 rounded-xl transition-all shadow-2xs hover:scale-105"
+              >
+                <span>Email Shivam</span>
+                <span>→</span>
+              </a>
+            </motion.div>
+
+            {/* Actions */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-wrap items-center gap-4"
+            >
               <a
                 href="#download"
-                className="bg-neutral-900 text-white hover:bg-neutral-800 px-8 py-4 rounded-2xl text-[15px] font-bold shadow-md hover:shadow-xl transition-all cursor-pointer inline-flex items-center gap-2"
+                className="bg-neutral-900 text-white hover:bg-neutral-800 px-7 py-3.5 rounded-2xl text-sm font-bold shadow-md hover:shadow-xl transition-all cursor-pointer inline-flex items-center gap-2"
               >
                 <span>Register Your Library — Free</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
               </a>
-            </div>
+              <a
+                href="mailto:shivam108ku@gmail.com"
+                className="px-6 py-3.5 rounded-2xl text-sm font-semibold text-neutral-700 bg-white hover:bg-neutral-50 border border-neutral-200 transition-colors inline-flex items-center gap-1.5"
+              >
+                <span>Get in Touch</span>
+                <span>✉️</span>
+              </a>
+            </motion.div>
           </div>
 
-          {/* Right — Feature Grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {libraryFeatures.map((f, i) => (
-              <div key={i} className="bg-white border border-neutral-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
-                <span className="text-[26px] mb-3 block group-hover:scale-110 transition-transform">{f.emoji}</span>
-                <h4 className="text-sm font-extrabold text-[#0F172A] mb-1.5">{f.title}</h4>
-                <p className="text-xs text-[#475569] leading-relaxed">{f.desc}</p>
-              </div>
-            ))}
-          </div>
+          {/* ── Right Column: Interactive 3D Profile Card (Entrance Animated) ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.96 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex justify-center lg:justify-end w-full pt-6 lg:pt-16"
+          >
+            <div className="w-full max-w-sm">
+              <ProfileCard
+                name="Shivam Kumar"
+                title="Software Engineer"
+                handle="shivam108ku"
+                status="Developed by Shivam Kumar"
+                email="shivam108ku@gmail.com"
+                contactUrl="https://www.linkedin.com/in/shivam-kumar108/"
+                avatarUrl="/shivam.jpg"
+                miniAvatarUrl="/shivam.jpg"
+                contactText="Connect"
+                behindGlowEnabled={false}
+                enableTilt={false}
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

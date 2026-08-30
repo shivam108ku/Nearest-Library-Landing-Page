@@ -3,7 +3,6 @@ import Hero from "./components/Hero";
 import Features from "./components/Features";
 import HowItWorks from "./components/HowItWorks";
 import StudentBenefits from "./components/StudentBenefits";
-import Testimonials from "./components/Testimonials";
 import PartnerLibraries from "./components/PartnerLibraries";
 import ForLibraries from "./components/ForLibraries";
 import FAQ from "./components/FAQ";
@@ -18,7 +17,6 @@ export default function Home() {
       <Features />
       <HowItWorks />
       <StudentBenefits />
-      <Testimonials />
       <PartnerLibraries />
       <ForLibraries />
       <FAQ />
