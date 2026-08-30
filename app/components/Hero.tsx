@@ -27,6 +27,11 @@ export default function Hero() {
 
       {/* ── Center Demo Content exactly matching screenshot ── */}
       <div className="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center">
+        {/* Desktop-only descriptive label */}
+        <p className="hidden md:block text-[15px] font-semibold text-neutral-900 tracking-tight mb-5">
+          Light cascading from the corner
+        </p>
+
         {/* Top Pill Badge: Relevant to NearestLibrary */}
         <div className="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur-md border border-neutral-200/80 rounded-full pl-1.5 pr-4 py-1 text-sm shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-8">
           <span className="bg-neutral-900 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
