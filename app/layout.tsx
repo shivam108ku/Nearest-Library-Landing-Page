@@ -133,8 +133,8 @@ export const metadata: Metadata = {
     apple: "/icon.svg?v=2",
   },
   category: "Education",
-  other: {
-    "google-site-verification": "ADD_YOUR_GOOGLE_VERIFICATION_CODE_HERE",
+  verification: {
+    google: "Nbn4KFds2Tz6HmiD32zIk1uZBRSSWA6KR3BwRmV0VQ0",
   },
 };
 
