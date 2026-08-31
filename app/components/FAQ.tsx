@@ -70,10 +70,11 @@ export default function FAQ() {
             const isOpen = openIndex === i;
             return (
               <div
-                key={i}
+                key={faq.q}
                 className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md"
               >
                 <button
+                  type="button"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                   className="w-full p-6 text-left flex justify-between items-center gap-4 cursor-pointer"
                   aria-expanded={isOpen}

@@ -5,8 +5,8 @@ import HowItWorks from "./components/HowItWorks";
 import StudentBenefits from "./components/StudentBenefits";
 import PartnerLibraries from "./components/PartnerLibraries";
 import ForLibraries from "./components/ForLibraries";
-import FAQ from "./components/FAQ";
-import CTA from "./components/CTA";
+import Faq from "./components/FAQ";
+import Cta from "./components/CTA";
 import Footer from "./components/Footer";
 
 export default function Home() {
@@ -19,8 +19,8 @@ export default function Home() {
       <StudentBenefits />
       <PartnerLibraries />
       <ForLibraries />
-      <FAQ />
-      <CTA />
+      <Faq />
+      <Cta />
       <Footer />
     </main>
   );

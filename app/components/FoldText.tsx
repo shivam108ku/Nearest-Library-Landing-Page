@@ -103,8 +103,8 @@ const FoldText: React.FC<FoldTextProps> = ({
 
     if (splitBy === 'line') {
       return text.split('\n').map((line, index) => (
-        <span className="fold-text-line" key={`line-${index}`}>
-          {renderSegment(line || '\u00A0', `segment-line-${index}`, 'line')}
+        <span className="fold-text-line" key={`line-token-${line.slice(0, 10)}-${index}`}>
+          {renderSegment(line || '\u00A0', `segment-line-${line.slice(0, 10)}-${index}`, 'line')}
         </span>
       ));
     }
@@ -112,8 +112,8 @@ const FoldText: React.FC<FoldTextProps> = ({
     if (splitBy === 'word') {
       return text.split(/(\s+)/).flatMap((part, index) => {
         if (!part) return [];
-        if (/^\s+$/.test(part)) return renderWhitespace(part, `ws-${index}`);
-        return renderSegment(part, `segment-word-${segmentIndex}`);
+        if (/^\s+$/.test(part)) return renderWhitespace(part, `ws-token-${index}-${part.length}`);
+        return renderSegment(part, `segment-word-${part.slice(0, 8)}-${segmentIndex}`);
       });
     }
 
@@ -128,23 +128,23 @@ const FoldText: React.FC<FoldTextProps> = ({
           const spaces = Array.from(word).map((spaceChar) => {
             const idx = globalIndex++;
             return (
-              <span key={`space-${idx}`} className="fold-text-whitespace">
+              <span key={`space-token-${idx}-${spaceChar}`} className="fold-text-whitespace">
                 {'\u00A0'}
               </span>
             );
           });
-          return <React.Fragment key={`ws-${wordIdx}`}>{spaces}</React.Fragment>;
+          return <React.Fragment key={`ws-token-${lineIdx}-${wordIdx}`}>{spaces}</React.Fragment>;
         }
 
         const chars = Array.from(word).map((char) => {
           const idx = globalIndex++;
           const customColor = charColors?.[idx] || (getCharColor ? getCharColor(char, idx) : undefined);
-          return renderSegment(char, `segment-char-${idx}`, 'char', customColor);
+          return renderSegment(char, `segment-char-${idx}-${char}`, 'char', customColor);
         });
 
         return (
           <span
-            key={`word-${wordIdx}`}
+            key={`word-token-${lineIdx}-${wordIdx}-${word.slice(0, 6)}`}
             style={{ display: 'inline-block', whiteSpace: 'nowrap' }}
           >
             {chars}
@@ -157,9 +157,9 @@ const FoldText: React.FC<FoldTextProps> = ({
       }
 
       return (
-        <React.Fragment key={`line-${lineIdx}`}>
+        <React.Fragment key={`line-token-${lineIdx}-${line.slice(0, 8)}`}>
           {lineElements}
-          {lineIdx < lines.length - 1 && <br key={`line-br-${lineIdx}`} />}
+          {lineIdx < lines.length - 1 && <br key={`line-br-${lineIdx}-${line.slice(0, 8)}`} />}
         </React.Fragment>
       );
     });
@@ -224,7 +224,9 @@ const FoldText: React.FC<FoldTextProps> = ({
         '--fold-crease': 0,
         transformOrigin: hingeConfig.origin
       });
-      hoverHandler = () => play(false);
+      hoverHandler = () => {
+        play(false);
+      };
       root.addEventListener('mouseenter', hoverHandler);
     } else if (trigger === 'scroll') {
       gsap.set(pieces, fromVars);

@@ -13,7 +13,7 @@ export default function Navbar() {
         aria-label="Main navigation"
       >
         {/* Brand / Logo */}
-        <a href="#" className="flex items-center gap-2.5 group cursor-pointer" aria-label="Nearest Library">
+        <a href="/" className="flex items-center gap-2.5 group cursor-pointer" aria-label="Nearest Library">
           <div className="w-8 h-8 rounded-xl overflow-hidden shadow-2xs group-hover:scale-105 transition-transform flex-shrink-0">
             <img src="/logo.png" alt="Nearest Library Logo" className="w-full h-full object-cover" />
           </div>
@@ -48,6 +48,7 @@ export default function Navbar() {
 
         {/* Mobile Hamburger Toggle */}
         <button
+          type="button"
           onClick={() => setOpen(!open)}
           className="md:hidden p-1.5 text-neutral-700 hover:text-black focus:outline-none"
           aria-label="Toggle Menu"

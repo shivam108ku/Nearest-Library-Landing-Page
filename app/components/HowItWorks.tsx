@@ -89,8 +89,8 @@ export default function HowItWorks() {
 
         {/* Steps List */}
         <div className="space-y-6">
-          {adminSteps.map((s, i) => (
-            <div key={i} className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start group">
+          {adminSteps.map((s) => (
+            <div key={s.num} className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start group">
               {/* Step Icon Badge */}
               <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-neutral-900 text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
                 <span className="text-xl">{s.emoji}</span>
@@ -116,9 +116,9 @@ export default function HowItWorks() {
 
                 {/* Practical Tips Row */}
                 <div className="pt-3 border-t border-neutral-100 flex flex-wrap gap-2">
-                  {s.tips.map((tip, tIdx) => (
+                  {s.tips.map((tip) => (
                     <span
-                      key={tIdx}
+                      key={tip}
                       className="inline-flex items-center gap-1.5 text-xs text-neutral-600 bg-neutral-50 border border-neutral-200/60 rounded-lg px-2.5 py-1"
                     >
                       <span className="text-[#B8860B] font-bold">✓</span>

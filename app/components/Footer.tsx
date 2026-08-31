@@ -13,6 +13,35 @@ const footerLinks = [
   },
 ];
 
+const socialLinks = [
+  { label: "X", href: "https://x.com/nearestlibrary" },
+  { label: "In", href: "https://www.linkedin.com/in/shivam-kumar108/" },
+  { label: "Ig", href: "https://instagram.com/nearestlibrary" },
+  { label: "Yt", href: "https://youtube.com/@nearestlibrary" },
+];
+
+function getFooterLinkHref(link: string): string {
+  switch (link) {
+    case "Download":
+      return "https://play.google.com/store/apps/details?id=com.shivam.nearestlibrary&pli=1";
+    case "About Us":
+    case "For Libraries":
+      return "#about";
+    case "Features":
+    case "For Students":
+      return "#features";
+    case "Contact Us":
+    case "Help Center":
+      return "mailto:shivam108ku@gmail.com";
+    case "Privacy Policy":
+      return "#privacy";
+    case "Terms of Service":
+      return "#terms";
+    default:
+      return "#top";
+  }
+}
+
 export default function Footer() {
   return (
     <footer className="bg-[#09090b] text-white pt-16 pb-8 px-6 border-t border-neutral-800">
@@ -32,13 +61,16 @@ export default function Footer() {
               India&apos;s #1 library near me app. Find the nearest library near you, book study seats online, and manage attendance with QR check-in. Helping 10,000+ students find their perfect study space daily.
             </p>
             <div className="flex gap-3">
-              {["X", "In", "Ig", "Yt"].map((s) => (
+              {socialLinks.map((s) => (
                 <a
-                  key={s}
-                  href="#"
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
                   className="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-xs font-bold text-neutral-400 hover:text-white transition-all"
                 >
-                  {s}
+                  {s.label}
                 </a>
               ))}
             </div>
@@ -49,28 +81,22 @@ export default function Footer() {
             <div key={col.title}>
               <h4 className="text-xs font-bold text-neutral-300 mb-4 uppercase tracking-wider">{col.title}</h4>
               <ul className="space-y-2.5">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href={
-                        link === "Download"
-                          ? "https://play.google.com/store/apps/details?id=com.shivam.nearestlibrary&pli=1"
-                          : link === "About Us"
-                          ? "#about"
-                          : link === "For Libraries"
-                          ? "#about"
-                          : link === "Features"
-                          ? "#features"
-                          : "#"
-                      }
-                      target={link === "Download" ? "_blank" : undefined}
-                      rel={link === "Download" ? "noopener noreferrer" : undefined}
-                      className="text-sm text-neutral-400 hover:text-[#B8860B] transition-colors font-medium"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
+                {col.links.map((link) => {
+                  const href = getFooterLinkHref(link);
+                  const isExternal = href.startsWith("http");
+                  return (
+                    <li key={link}>
+                      <a
+                        href={href}
+                        target={isExternal ? "_blank" : undefined}
+                        rel={isExternal ? "noopener noreferrer" : undefined}
+                        className="text-sm text-neutral-400 hover:text-[#B8860B] transition-colors font-medium"
+                      >
+                        {link}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
@@ -80,9 +106,9 @@ export default function Footer() {
         <div className="border-t border-neutral-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-neutral-500">
           <p>&copy; {new Date().getFullYear()} NearestLibrary Inc. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-neutral-300 transition-colors">Privacy</a>
-            <a href="#" className="hover:text-neutral-300 transition-colors">Terms</a>
-            <a href="#" className="hover:text-neutral-300 transition-colors">Cookies</a>
+            <a href="#privacy" className="hover:text-neutral-300 transition-colors">Privacy</a>
+            <a href="#terms" className="hover:text-neutral-300 transition-colors">Terms</a>
+            <a href="#cookies" className="hover:text-neutral-300 transition-colors">Cookies</a>
           </div>
         </div>
       </div>

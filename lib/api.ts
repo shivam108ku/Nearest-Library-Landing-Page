@@ -63,7 +63,7 @@ export async function fetchPublicLibraries(): Promise<Library[]> {
     const response = await apiClient.get<PublicLibrariesResponse>(
       "/tenants/public/libraries"
     );
-    if (response.data && response.data.status === "ok" && Array.isArray(response.data.libraries)) {
+    if (response.data?.status === "ok" && Array.isArray(response.data?.libraries)) {
       cachedLibraries = response.data.libraries;
       lastFetchTime = now;
       return cachedLibraries;

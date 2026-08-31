@@ -32,7 +32,12 @@ function getInitials(name: string): string {
 }
 
 /* ── Sleek Monochrome Logo Monogram ──────────────────────── */
-function MonochromeLogo({ name, logoUrl }: { name: string; logoUrl?: string }) {
+interface MonochromeLogoProps {
+  readonly name: string;
+  readonly logoUrl?: string;
+}
+
+function MonochromeLogo({ name, logoUrl }: MonochromeLogoProps) {
   if (logoUrl) {
     return (
       <div className="relative w-12 h-12 rounded-xl overflow-hidden shadow-xs border border-neutral-200 group-hover:border-neutral-300 transition-colors flex-shrink-0">
@@ -55,7 +60,11 @@ function MonochromeLogo({ name, logoUrl }: { name: string; logoUrl?: string }) {
 }
 
 /* ── Client Component ───────────────────────────────────── */
-export default function PartnerLibrariesClient({ libraries }: { libraries: Library[] }) {
+interface PartnerLibrariesClientProps {
+  readonly libraries: readonly Library[];
+}
+
+export default function PartnerLibrariesClient({ libraries }: PartnerLibrariesClientProps) {
   const [selectedRegion, setSelectedRegion] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -80,14 +89,14 @@ export default function PartnerLibrariesClient({ libraries }: { libraries: Libra
     return libraries.filter((lib) => {
       const matchesRegion =
         selectedRegion === "All" ||
-        (lib.district && lib.district.toLowerCase().includes(selectedRegion.toLowerCase())) ||
-        (lib.state && lib.state.toLowerCase().includes(selectedRegion.toLowerCase()));
+        Boolean(lib.district?.toLowerCase().includes(selectedRegion.toLowerCase())) ||
+        Boolean(lib.state?.toLowerCase().includes(selectedRegion.toLowerCase()));
 
       const matchesSearch =
         searchQuery.trim() === "" ||
         lib.libraryName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (lib.district && lib.district.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (lib.state && lib.state.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        Boolean(lib.district?.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        Boolean(lib.state?.toLowerCase().includes(searchQuery.toLowerCase())) ||
         lib.facilities.some((f) => f.toLowerCase().includes(searchQuery.toLowerCase()));
 
       return matchesRegion && matchesSearch;
@@ -147,12 +156,13 @@ export default function PartnerLibrariesClient({ libraries }: { libraries: Libra
                 ? libraries.length
                 : libraries.filter(
                     (l) =>
-                      (l.district && l.district.toLowerCase().includes(region.toLowerCase())) ||
-                      (l.state && l.state.toLowerCase().includes(region.toLowerCase()))
+                      Boolean(l.district?.toLowerCase().includes(region.toLowerCase())) ||
+                      Boolean(l.state?.toLowerCase().includes(region.toLowerCase()))
                   ).length;
 
             return (
               <button
+                type="button"
                 key={region}
                 onClick={() => setSelectedRegion(region)}
                 className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer ${
@@ -194,6 +204,7 @@ export default function PartnerLibrariesClient({ libraries }: { libraries: Libra
           />
           {searchQuery && (
             <button
+              type="button"
               onClick={() => setSearchQuery("")}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 text-xs font-bold"
             >
@@ -219,7 +230,7 @@ export default function PartnerLibrariesClient({ libraries }: { libraries: Libra
                   {/* Clean Monochrome Verified Pill */}
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-neutral-100 text-neutral-700 border border-neutral-200">
                     <span className="w-1.5 h-1.5 rounded-full bg-neutral-900" />
-                    Verified
+                    <span>Verified</span>
                   </span>
                 </div>
 
@@ -265,9 +276,9 @@ export default function PartnerLibrariesClient({ libraries }: { libraries: Libra
                 {/* Facilities Badges — Clean Monochrome */}
                 {lib.facilities.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 mb-2">
-                    {lib.facilities.slice(0, 4).map((f, fi) => (
+                    {lib.facilities.slice(0, 4).map((f) => (
                       <span
-                        key={fi}
+                        key={f}
                         className="inline-flex items-center gap-1 bg-neutral-50 border border-neutral-200/70 rounded-lg px-2 py-0.5 text-[10px] font-medium text-neutral-700"
                       >
                         <span className="text-[11px]">{facilityEmoji[f] || "✨"}</span>
@@ -305,6 +316,7 @@ export default function PartnerLibrariesClient({ libraries }: { libraries: Libra
           </p>
           {visibleCount < filteredLibraries.length ? (
             <button
+              type="button"
               onClick={() => setVisibleCount((prev) => prev + 8)}
               className="inline-flex items-center gap-2 bg-white hover:bg-neutral-50 text-neutral-900 border border-neutral-300 font-semibold text-xs px-5 py-2.5 rounded-xl shadow-2xs hover:shadow-xs transition-all cursor-pointer hover:scale-[1.02]"
             >
@@ -318,6 +330,7 @@ export default function PartnerLibrariesClient({ libraries }: { libraries: Libra
             </button>
           ) : (
             <button
+              type="button"
               onClick={() => setVisibleCount(INITIAL_VISIBLE_COUNT)}
               className="inline-flex items-center gap-2 bg-white hover:bg-neutral-50 text-neutral-600 border border-neutral-200 font-semibold text-xs px-4 py-2 rounded-xl transition-all cursor-pointer"
             >
@@ -336,6 +349,7 @@ export default function PartnerLibrariesClient({ libraries }: { libraries: Libra
           <h4 className="text-sm font-semibold text-neutral-800">No libraries match your search</h4>
           <p className="text-xs text-neutral-500 mt-1">Try selecting another city or clearing your search filter.</p>
           <button
+            type="button"
             onClick={() => {
               setSelectedRegion("All");
               setSearchQuery("");

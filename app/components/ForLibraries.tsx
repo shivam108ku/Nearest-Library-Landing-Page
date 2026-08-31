@@ -71,9 +71,9 @@ export default function ForLibraries() {
               transition={{ duration: 0.6, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
               className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-7 w-full"
             >
-              {capabilities.map((cap, idx) => (
+              {capabilities.map((cap) => (
                 <motion.div
-                  key={idx}
+                  key={cap.label}
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
                   className="flex items-center gap-2.5 bg-white border border-neutral-200/80 hover:border-neutral-300 rounded-xl p-3 shadow-2xs transition-colors"

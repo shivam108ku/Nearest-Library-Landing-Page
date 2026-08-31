@@ -6,7 +6,13 @@ import './SideRays.css';
 
 const hexToRgb = (hex: string): [number, number, number] => {
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return m ? [parseInt(m[1], 16) / 255, parseInt(m[2], 16) / 255, parseInt(m[3], 16) / 255] : [1, 1, 1];
+  return m
+    ? [
+        Number.parseInt(m[1], 16) / 255,
+        Number.parseInt(m[2], 16) / 255,
+        Number.parseInt(m[3], 16) / 255
+      ]
+    : [1, 1, 1];
 };
 
 const originToFlip = (origin: string): [number, number] => {
@@ -93,8 +99,10 @@ const SideRays: React.FC<SideRaysProps> = ({
       if (!containerRef.current) return;
 
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+      const deviceDpr = typeof window !== 'undefined' ? window.devicePixelRatio : 1;
+      const targetDpr = isMobile ? 1 : Math.min(deviceDpr, 2);
       const renderer = new Renderer({
-        dpr: isMobile ? 1 : Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 2),
+        dpr: targetDpr,
         alpha: true
       });
       rendererRef.current = renderer;
@@ -104,7 +112,7 @@ const SideRays: React.FC<SideRaysProps> = ({
       gl.canvas.style.height = '100%';
 
       while (containerRef.current.firstChild) {
-        containerRef.current.removeChild(containerRef.current.firstChild);
+        containerRef.current.firstChild.remove();
       }
       containerRef.current.appendChild(gl.canvas);
 
@@ -213,8 +221,8 @@ void main() {
         try {
           renderer.render({ scene: mesh });
           animationIdRef.current = requestAnimationFrame(loop);
-        } catch (e) {
-          return;
+        } catch {
+          animationIdRef.current = null;
         }
       };
 
@@ -231,10 +239,11 @@ void main() {
         if (renderer) {
           try {
             const loseCtx = renderer.gl.getExtension('WEBGL_lose_context');
-            if (loseCtx) loseCtx.loseContext();
-            const canvas = renderer.gl.canvas;
-            if (canvas && canvas.parentNode) canvas.parentNode.removeChild(canvas);
-          } catch (e) {}
+            loseCtx?.loseContext();
+            renderer.gl.canvas?.remove();
+          } catch {
+            // Ignore WebGL cleanup error
+          }
         }
         rendererRef.current = null;
         uniformsRef.current = null;

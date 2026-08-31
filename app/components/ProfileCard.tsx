@@ -14,7 +14,7 @@ const ANIMATION_CONFIG = {
 };
 
 const clamp = (v: number, min = 0, max = 100) => Math.min(Math.max(v, min), max);
-const round = (v: number, precision = 3) => parseFloat(v.toFixed(precision));
+const round = (v: number, precision = 3) => Number.parseFloat(v.toFixed(precision));
 const adjust = (v: number, fMin: number, fMax: number, tMin: number, tMax: number) =>
   round(tMin + ((tMax - tMin) * (v - fMin)) / (fMax - fMin));
 
@@ -151,22 +151,28 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       rafId = requestAnimationFrame(step);
     };
 
+    const setImmediate = (x: number, y: number) => {
+      currentX = x;
+      currentY = y;
+      setVarsFromXY(currentX, currentY);
+    };
+
+    const setTarget = (x: number, y: number) => {
+      targetX = x;
+      targetY = y;
+      start();
+    };
+
+    const toCenter = () => {
+      const shell = shellRef.current;
+      if (!shell) return;
+      setTarget(shell.clientWidth / 2, shell.clientHeight / 2);
+    };
+
     return {
-      setImmediate(x: number, y: number) {
-        currentX = x;
-        currentY = y;
-        setVarsFromXY(currentX, currentY);
-      },
-      setTarget(x: number, y: number) {
-        targetX = x;
-        targetY = y;
-        start();
-      },
-      toCenter() {
-        const shell = shellRef.current;
-        if (!shell) return;
-        this.setTarget(shell.clientWidth / 2, shell.clientHeight / 2);
-      },
+      setImmediate,
+      setTarget,
+      toCenter,
       beginInitial(durationMs: number) {
         initialUntil = performance.now() + durationMs;
         start();
@@ -203,8 +209,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       const shell = shellRef.current;
       if (!shell || !tiltEngine) return;
 
-      shell.classList.add('active');
-      shell.classList.add('entering');
+      shell.classList.add('active', 'entering');
       if (enterTimerRef.current) window.clearTimeout(enterTimerRef.current);
       enterTimerRef.current = window.setTimeout(() => {
         shell.classList.remove('entering');

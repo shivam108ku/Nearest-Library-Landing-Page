@@ -88,9 +88,9 @@ export default function StudentBenefits() {
           blurAmount={0}
           useWindowScroll={true}
         >
-          {studentCards.map((card, i) => (
+          {studentCards.map((card) => (
             <ScrollStackItem
-              key={i}
+              key={card.step}
               style={{
                 background: "#FFFFFF",
                 borderColor: "rgba(0, 0, 0, 0.08)",
@@ -134,9 +134,9 @@ export default function StudentBenefits() {
 
                 {/* Feature Badges */}
                 <div className="flex flex-wrap gap-2">
-                  {card.badges.map((badge, bIdx) => (
+                  {card.badges.map((badge) => (
                     <span
-                      key={bIdx}
+                      key={badge}
                       className="text-xs font-medium px-3 py-1.5 rounded-xl bg-neutral-50 border border-neutral-200/80 text-neutral-600"
                     >
                       {badge}
