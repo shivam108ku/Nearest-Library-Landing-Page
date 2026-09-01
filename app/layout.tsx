@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import StructuredData from "./components/StructuredData";
+import ScrollProgress from "./components/ScrollProgress";
+import MouseSpotlight from "./components/MouseSpotlight";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -163,6 +165,8 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <StructuredData />
+        <ScrollProgress />
+        <MouseSpotlight />
         {children}
       </body>
     </html>

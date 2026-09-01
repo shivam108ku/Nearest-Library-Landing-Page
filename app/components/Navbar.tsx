@@ -40,9 +40,13 @@ export default function Navbar() {
             href="https://play.google.com/store/apps/details?id=com.shivam.nearestlibrary&pli=1"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-black text-white px-4 py-2 rounded-xl text-sm font-medium shadow-sm hover:bg-neutral-800 transition-colors cursor-pointer"
+            className="relative inline-flex items-center gap-1.5 bg-black text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-sm hover:shadow-md hover:bg-gradient-to-r hover:from-black hover:to-[#27272a] hover:-translate-y-0.5 transition-all cursor-pointer overflow-hidden group"
           >
-            Download App
+            <span>Download App</span>
+            <svg className="transition-transform group-hover:translate-x-0.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+            <span className="absolute inset-0 bg-gradient-to-r from-[#B8860B]/0 via-[#B8860B]/20 to-[#B8860B]/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           </a>
         </div>
 
@@ -76,7 +80,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {open && (
-        <div className="md:hidden fixed top-20 left-4 right-4 bg-white/95 backdrop-blur-lg border border-neutral-200/80 rounded-2xl p-5 shadow-xl pointer-events-auto flex flex-col gap-3">
+        <div className="md:hidden fixed top-20 left-3 right-3 sm:left-4 sm:right-4 bg-white/95 backdrop-blur-lg border border-neutral-200/80 rounded-2xl p-4 sm:p-5 shadow-xl pointer-events-auto flex flex-col gap-3 max-w-2xl mx-auto">
           <a
             href="#features"
             onClick={() => setOpen(false)}
@@ -96,9 +100,10 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
-            className="bg-black text-white text-center py-2.5 rounded-xl text-sm font-medium shadow-sm hover:bg-neutral-800"
+            className="relative bg-black text-white text-center py-2.5 rounded-xl text-sm font-semibold shadow-sm hover:shadow-md transition-all overflow-hidden group"
           >
-            Download App (Google Play)
+            <span className="relative z-10">Download App (Google Play)</span>
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[#B8860B]/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           </a>
         </div>
       )}

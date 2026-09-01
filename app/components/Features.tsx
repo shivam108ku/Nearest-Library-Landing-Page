@@ -143,7 +143,7 @@ export default function Features() {
               </div>
 
               {/* Right Column: Illustration Preview */}
-              <div className="hidden md:flex flex-shrink-0 w-64 h-64 lg:w-72 lg:h-72 rounded-3xl overflow-hidden bg-neutral-50/80 border border-neutral-200/70 p-3 items-center justify-center shadow-inner group">
+              <div className="hidden md:flex flex-shrink-0 w-44 h-44 lg:w-72 lg:h-72 rounded-3xl overflow-hidden bg-neutral-50/80 border border-neutral-200/70 p-3 items-center justify-center shadow-inner group">
                 <img
                   src={card.img}
                   alt={card.title}

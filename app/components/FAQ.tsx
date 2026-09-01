@@ -33,7 +33,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-24 px-6 bg-gradient-to-b from-white via-[#F8FAFC] to-white" suppressHydrationWarning>
+    <section id="faq" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-white via-[#F8FAFC] to-white" suppressHydrationWarning>
       <div className="max-w-4xl mx-auto" suppressHydrationWarning>
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -65,26 +65,43 @@ export default function FAQ() {
         </div>
 
         {/* FAQ Accordion */}
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
               <div
                 key={faq.q}
-                className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md"
+                className={`gradient-border-card bg-white rounded-2xl overflow-hidden transition-all duration-300 ${
+                  isOpen
+                    ? "shadow-lg border-transparent"
+                    : "border border-neutral-200/80 shadow-sm hover:shadow-md"
+                }`}
               >
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="w-full p-6 text-left flex justify-between items-center gap-4 cursor-pointer"
+                  className="w-full p-4 sm:p-6 text-left flex justify-between items-start gap-3 sm:gap-4 cursor-pointer group"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-base font-extrabold text-[#0F172A]">
-                    {faq.q}
+                  <span className="flex items-start gap-2.5 sm:gap-3 min-w-0 flex-1">
+                    <span
+                      className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold transition-colors mt-0.5 ${
+                        isOpen
+                          ? "bg-[#B8860B] text-white"
+                          : "bg-neutral-100 text-neutral-500 group-hover:bg-[#B8860B]/15 group-hover:text-[#B8860B]"
+                      }`}
+                    >
+                      Q{i + 1}
+                    </span>
+                    <span className="text-[15px] sm:text-[17px] font-semibold text-[#09090b] leading-snug break-words">
+                      {faq.q}
+                    </span>
                   </span>
                   <div
-                    className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${
-                      isOpen ? "bg-neutral-900 text-white rotate-180" : "bg-neutral-100 text-neutral-800"
+                    className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 mt-0.5 ${
+                      isOpen
+                        ? "bg-neutral-900 text-white rotate-180"
+                        : "bg-neutral-100 text-neutral-800 group-hover:bg-neutral-200"
                     }`}
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -92,11 +109,17 @@ export default function FAQ() {
                     </svg>
                   </div>
                 </button>
-                {isOpen && (
-                  <div className="px-6 pb-6 pt-0 text-sm text-[#475569] leading-relaxed border-t border-neutral-100 pt-4">
-                    {faq.a}
+                <div
+                  className={`grid transition-all duration-400 ease-out ${
+                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-4 sm:px-6 pb-4 sm:pb-6 text-sm sm:text-[15px] text-[#475569] leading-relaxed border-t border-neutral-100 pt-3 sm:pt-4 break-words">
+                      {faq.a}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
