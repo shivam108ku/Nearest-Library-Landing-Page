@@ -4,19 +4,15 @@ export default function StructuredData() {
     "https://play.google.com/store/apps/details?id=com.shivam.nearestlibrary";
 
   // 1. Software Application Schema — triggers Google App Rich Cards
+  // Note: aggregateRating is omitted to comply with Google's structured data guidelines.
+  // Adding fake ratings is a violation — Google may issue a Manual Action.
+  // Once you have verified real reviews on Google Play, add the real numbers here.
   const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "MobileApplication",
     name: "NearestLibrary — Library Near Me",
     operatingSystem: "Android",
     applicationCategory: "EducationalApplication",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      ratingCount: "1240",
-      bestRating: "5",
-      worstRating: "1",
-    },
     offers: {
       "@type": "Offer",
       price: "0",
@@ -24,7 +20,7 @@ export default function StructuredData() {
       availability: "https://schema.org/InStock",
     },
     description:
-      "Find nearest library near you, book study seats instantly, and manage attendance with QR check-in. India's #1 library near me and study space booking app.",
+      "Find the nearest library near you, book study seats instantly, and manage attendance with QR check-in. India's #1 library near me and study space booking app for students.",
     url: baseUrl,
     downloadUrl: playStoreUrl,
     installUrl: playStoreUrl,
@@ -194,7 +190,6 @@ export default function StructuredData() {
     url: baseUrl,
     logo: `${baseUrl}/icon.png`,
     image: `${baseUrl}/opengraph-image`,
-    telephone: "+91-9999999999",
     address: {
       "@type": "PostalAddress",
       addressCountry: "IN",
@@ -240,6 +235,57 @@ export default function StructuredData() {
     },
   };
 
+  // 7. Service Catalog — keyword-targeted service entries
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Library Discovery & Seat Reservation Platform",
+    provider: {
+      "@type": "Organization",
+      name: "NearestLibrary",
+      url: baseUrl,
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "India",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Library Near Me Services in Major Indian Cities",
+      itemListElement: [
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Library near me Delhi" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Library near me Mumbai" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Library near me Bangalore" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Library near me Hyderabad" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Library near me Pune" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Library near me Chennai" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Library near me Kolkata" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Library near me Jaipur" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Library near me Lucknow" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Library near me Patna" } },
+      ],
+    },
+  };
+
+  // 8. ItemList — list of cities where libraries are available (helps rank for "library near me [city]")
+  const citiesListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Indian Cities with NearestLibrary Partner Libraries",
+    description: "Find libraries near you in these major Indian cities via NearestLibrary.",
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    numberOfItems: 13,
+    itemListElement: [
+      "Delhi", "Mumbai", "Bangalore", "Hyderabad", "Pune", "Chennai",
+      "Kolkata", "Jaipur", "Lucknow", "Patna", "Bhopal", "Chandigarh", "Ahmedabad",
+    ].map((city, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: `Library near me ${city}`,
+      url: `${baseUrl}/#partner-libraries`,
+    })),
+  };
+
   return (
     <>
       <script
@@ -267,6 +313,14 @@ export default function StructuredData() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(localBusinessSchema),
         }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(citiesListSchema) }}
       />
     </>
   );

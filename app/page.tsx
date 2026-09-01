@@ -5,6 +5,7 @@ import Features from "./components/Features";
 import HowItWorks from "./components/HowItWorks";
 import StudentBenefits from "./components/StudentBenefits";
 import PartnerLibraries from "./components/PartnerLibraries";
+import CityGrid from "./components/CityGrid";
 import ForLibraries from "./components/ForLibraries";
 import Faq from "./components/FAQ";
 import Cta from "./components/CTA";
@@ -20,6 +21,7 @@ export default function Home() {
       <HowItWorks />
       <StudentBenefits />
       <PartnerLibraries />
+      <CityGrid />
       <ForLibraries />
       <Faq />
       <Cta />

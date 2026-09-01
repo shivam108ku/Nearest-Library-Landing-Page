@@ -142,7 +142,11 @@ function StatCard({ stat }: { stat: Stat }) {
 
 export default function Stats() {
   return (
-    <section className="relative px-4 sm:px-6 py-12 sm:py-16 bg-gradient-to-b from-white to-[#FAFAFA]">
+    <section
+      id="stats"
+      className="relative px-4 sm:px-6 py-12 sm:py-16 bg-gradient-to-b from-white to-[#FAFAFA]"
+      aria-label="NearestLibrary statistics — students, libraries, and cities served"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8 sm:mb-10">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md border border-neutral-200/80 rounded-full px-3.5 sm:px-4 py-1.5 text-[11px] sm:text-xs shadow-sm">

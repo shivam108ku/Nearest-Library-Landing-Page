@@ -50,32 +50,37 @@ export default function Hero() {
             NOW LIVE
           </span>
           <span className="text-xs sm:text-sm font-medium text-neutral-600 whitespace-nowrap">
-            Find &amp; Reserve Nearby Study Libraries
+            Library Near Me — Find &amp; Reserve Study Seats
           </span>
         </div>
 
         {/* 3D Origami FoldText Headline via Next.js Dynamic Client Boundary */}
         <div
-          className="w-full max-w-xl mx-auto mb-8 flex justify-center text-center"
+          className="w-full max-w-2xl mx-auto mb-6 flex justify-center text-center"
           suppressHydrationWarning
         >
           <FoldText
             as="h1"
-            text={"Nearest Library Making\n Libraries Smarter"}
+            text={"Find a Library Near Me\n Book Seats Instantly"}
             splitBy="char"
             hinge="top"
             trigger="mount"
             duration={0.65}
             stagger={0.045}
-            ease="power3.out" 
+            ease="power3.out"
             perspective={700}
             creaseShading={0.55}
             fontSize="clamp(1.9rem, 6.5vw, 3rem)"
             fontWeight={600}
             color="#09090b"
-            charColors={{ 8: "#B8860B", 9: "#B8860B", 10: "#B8860B" }}
+            charColors={{ 8: "#B8860B", 9: "#B8860B", 10: "#B8860B", 11: "#B8860B", 12: "#B8860B", 13: "#B8860B" }}
           />
         </div>
+
+        {/* SEO-optimized subheadline (visible to crawlers, complements h1) */}
+        <p className="text-sm sm:text-base text-neutral-600 max-w-xl mx-auto text-center mb-8 leading-relaxed">
+          India's #1 <strong className="text-neutral-900 font-semibold">nearest library</strong> discovery app. Locate the <strong className="text-neutral-900 font-semibold">library near me</strong>, book study seats in seconds, and check in with QR — free for all students.
+        </p>
 
         {/* Action Buttons matching screenshot */}
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-3.5">

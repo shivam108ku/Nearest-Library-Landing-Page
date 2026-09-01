@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  NearestLibrary — XML Sitemap
+  Generated for Google Search Console, Bing Webmaster Tools.
+  Tells crawlers about every important public URL, when it was last updated,
+  how often it changes, and its priority relative to other URLs on the site.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ── Primary Landing Page (highest priority) ── -->
+  <url>
+    <loc>https://nearestlibrary.com/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://nearestlibrary.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nearestlibrary.com/" />
+    <image:image>
+      <image:loc>https://nearestlibrary.com/opengraph-image</image:loc>
+      <image:title>NearestLibrary — Library Near Me App</image:title>
+      <image:caption>Find nearest library near you and book study seats instantly</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ── Anchor Sections (still part of single-page app, but worth listing) ── -->
+  <url>
+    <loc>https://nearestlibrary.com/#features</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nearestlibrary.com/#how-it-works</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nearestlibrary.com/#student-benefits</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nearestlibrary.com/#partner-libraries</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nearestlibrary.com/#faq</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nearestlibrary.com/#download</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ── US redirect (preserves SEO equity) ── -->
+  <url>
+    <loc>https://nearestlibrary.com/us</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>
